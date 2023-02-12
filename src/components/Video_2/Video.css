@@ -1,0 +1,29 @@
+.left-video2-side {
+    height: 100%;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #cad2c5;
+    font-family: helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman,
+      sans-serif;
+  }
+
+    .scrolling-area-video2 {
+    max-width: 400px;
+    overflow: auto;
+    padding: 1rem;
+    background: black;
+    direction: rtl;
+    color: #fff;
+    border-left: 0.5px solid white;
+    height: 600px;
+  }
+  
+  .scrolling-element-inside {
+    direction: ltr;
+    max-height: 250px;
+  
+  }
+  
