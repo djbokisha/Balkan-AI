@@ -41,7 +41,7 @@ function Vide_2() {
           </div>
 
         </div>
-        <button>Isprobja</button>
+        <button className="btn-video2 btn-hover">Isprobaj</button>
       </div>
     </div>
   );

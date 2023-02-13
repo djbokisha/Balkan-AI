@@ -1,4 +1,3 @@
-import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Video from "./components/Video/Video";
 import Description from "./components/Description/Description";
@@ -8,10 +7,16 @@ import Info_2 from "./components/Info_2/Info_2";
 import Vide_2 from "./components/Video_2/Vide_2";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
+import { Helmet } from "react-helmet-async";
 
-function App() {
+function App(): JSX.Element {
   return (
-    <div className="App">
+    <>
+      <Helmet>
+        <title>Balkan AI</title>
+        <link rel="canonical" href="#" />
+      </Helmet>
+
       <Navbar />
       <Video />
       <Description />
@@ -21,7 +26,7 @@ function App() {
       <Vide_2 />
       <Contact />
       <Footer />
-    </div>
+    </>
   );
 }
 

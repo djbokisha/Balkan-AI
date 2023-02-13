@@ -6,12 +6,15 @@ function Conversation() {
     <div className="conversation">
       <h1>BALKAN AI</h1>
 
+
       <div className="content">
+      <p>Započnite konverzaciju:</p>
+
         <div className="input">
-          <p>Započnite konverzaciju:</p>
           <input type="email" placeholder="Vase pitanje/zahtev" />
+          <button>Posalji</button>
+
         </div>
-        <button>Posalji</button>
       </div>
     </div>
   );

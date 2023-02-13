@@ -5,15 +5,15 @@
 
 .conversation {
   width: 100%;
-  height: 20vh;
   color: wheat;
   background-color: black;
   padding: 20px 0;
+  height: 30vh;
 }
 .input {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 70%;
+
 }
 
 .input input {
@@ -21,22 +21,24 @@
     helvetica-lt-w10-roman, sans-serif;
   background-color: rgb(255, 255, 255);
   height: 50px;
-  width: 255px;
+  width: 360%;
   border-radius: 10px;
   border: 1px solid black;
 }
 
 .content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
+  padding-left: 20%;
 }
 
 .content button {
   cursor: pointer;
   border-radius: 10px;
   border: 1px solid black;
-  width: 80px;
+  width: 300px;
   height: 55px;
   margin-left: 2rem;
 }
