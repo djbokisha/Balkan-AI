@@ -1,10 +1,24 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import "./Contact.css";
 
 function Contact() {
+  const nameRef = useRef<HTMLInputElement>(null);
+  const surnmeRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
 
+    const name = nameRef.current!.value;
+    const surname = surnmeRef.current!.value;
+    const email = emailRef.current!.value;
+    const message = messageRef.current!.value;
+
+
+    console.log(name, surname, email, message);
+    formRef.current?.reset()
   };
   return (
     <div className="container-contact">
@@ -22,22 +36,27 @@ function Contact() {
       </div>
       <div className="right-contact-side">
         <div className="container-form">
-          <form onSubmit={(e: React.SyntheticEvent) => submitHandler} action="">
+          <form onSubmit={(e: FormEvent) => submitHandler(e)} ref={formRef}>
             <h1>KONTAKT</h1>
             <div className="name-surname">
               <div className="name">
                 <label htmlFor="">Ime</label>
-                <input type="text" placeholder="" name="name" />
+                <input type="text" placeholder="" name="name" ref={nameRef} />
               </div>
 
               <div className="surname">
                 <label htmlFor="">Prezime</label>
-                <input type="text" placeholder="" name="surname" />
+                <input
+                  type="text"
+                  placeholder=""
+                  name="surname"
+                  ref={surnmeRef}
+                />
               </div>
             </div>
             <div className="email">
               <label htmlFor="">Email</label>
-              <input type="email" placeholder="" name="email" />
+              <input type="email" placeholder="" name="email" ref={emailRef} />
             </div>
             <p>Poruka</p>
 
@@ -47,6 +66,7 @@ function Contact() {
                 id="text"
                 cols={40}
                 rows={10}
+                ref={messageRef}
               ></textarea>
               <button type="submit" className="btn-send">
                 Posalji

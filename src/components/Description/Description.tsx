@@ -1,7 +1,10 @@
 import React from "react";
-import "./Decription.css"
+import "./Decription.css";
 
 function Description() {
+
+
+  
   return (
     <div className="container-desciption">
       <div className="left-desciption-side">
@@ -35,7 +38,7 @@ function Description() {
           </div>
         </div>
       </div>
-      <div className="right-desciption-side"></div>
+      <div id="right" className="right-desciption-side"></div>
     </div>
   );
 }

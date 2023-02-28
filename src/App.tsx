@@ -8,6 +8,11 @@ import Vide_2 from "./components/Video_2/Vide_2";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
+import Login from "./components/Login/Login";
+import Chat_Bot from "./components/Chat_Bot/Chat_Bot";
+import Pay_Pal from "./components/Pay_Pal/Pay_Pal";
+import Singup from "./components/Signup/Singup";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App(): JSX.Element {
   return (
@@ -26,6 +31,11 @@ function App(): JSX.Element {
       <Vide_2 />
       <Contact />
       <Footer />
+      <Login />
+      <Chat_Bot />
+      <Pay_Pal />
+      <Singup />
+      <Dashboard/>
     </>
   );
 }

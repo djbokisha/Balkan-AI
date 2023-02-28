@@ -16,6 +16,8 @@ function Navbar() {
         </div>
 
         <div className={click ? "nav active" : "nav"}>
+          <button className="btn-login btn-hover">Profile</button>
+          
           <button className="btn-login btn-hover">Log in</button>
         </div>
         <div onClick={hadleClick} className="hamburger">
