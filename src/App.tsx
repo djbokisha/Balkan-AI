@@ -7,6 +7,7 @@ import Chat_Bot from "./components/Chat_Bot/Chat_Bot";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
+import Pay_Pal from "./components/Pay_Pal/Pay_Pal";
 import Signup from "./components/Signup/Singup";
 import ErrorPage from "./pages/Error-Page";
 import Home from "./pages/Home";
@@ -37,6 +38,10 @@ function App(): JSX.Element {
       {
         path: 'signup',
         element: <Signup />
+      },
+      {
+        path: 'buy',
+        element: <Pay_Pal />
       }
       ]
     },

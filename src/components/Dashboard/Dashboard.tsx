@@ -11,7 +11,7 @@ function Dashboard() {
 
       <div className="buttons-dashboard">
         <button type="button" onClick={() => navigate('/chat')}>Pokreni Balkan AI</button>
-        <button type="button">Pretplati se</button>
+        <button type="button" onClick={() => navigate('/buy')}>Pretplati se</button>
         <button type="button">Promeni Lozinku</button>
       </div>
     </div>
