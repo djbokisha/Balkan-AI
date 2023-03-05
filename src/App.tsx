@@ -21,35 +21,33 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
+import React from "react";
+import Home from "./pages/Home";
+import ErrorPage from "./pages/Error-Page";
 
 function App(): JSX.Element {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<Root />}>
-        <Route index element={<Navbar />} />
-        <Route element={<Video />} />
-        <Route element={<Description />} />
-        <Route element={<Conversation />} />
-        <Route element={<Info_1 />} />
-        <Route element={<Info_2 />} />
-        <Route element={<Vide_2 />} />
-        <Route element={<Footer />} />
-        <Route element={<Login />} />
-        <Route element={<Chat_Bot />} />
-        <Route element={<Pay_Pal />} />
-        <Route element={<Singup />} />
-        <Route element={<Dashboard />} />
-      </Route>
-    )
-  );
+
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      errorElement: <ErrorPage />,
+      children: [{
+        path: "/",
+        element: <Home />,
+      }]
+    },
+  ]);
   return (
     <>
       <Helmet>
         <title>Balkan AI</title>
         <link rel="canonical" href="#" />
       </Helmet>
-
-      <RouterProvider router={router} />
+      <React.StrictMode>
+        <RouterProvider router={router} />
+      </React.StrictMode>
     </>
   );
 }
@@ -58,9 +56,8 @@ export default App;
 const Root = () => {
   return (
     <>
-      <div>
-        <Outlet />
-      </div>
+      <Navbar />
+      <Outlet />
     </>
   );
 };
