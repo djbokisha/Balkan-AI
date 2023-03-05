@@ -1,7 +1,9 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Info_2.css";
 
 function Info_2() {
+  const navigate = useNavigate()
+
   return (
     <div className="container-info2">
       <div className="right-info2-side"></div>
@@ -21,7 +23,7 @@ function Info_2() {
             inteligencija radi 24/7, stoga vam je uvek na raspolaganju.
           </p>
 
-          <button className="btn-info btn-hover">ISPROBAJ</button>
+          <button className="btn-info btn-hover" onClick={() => navigate('/chat')} type="button">ISPROBAJ</button>
         </div>
       </div>
     </div>

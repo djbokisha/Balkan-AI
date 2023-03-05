@@ -1,13 +1,12 @@
-import React, { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import "./Login_left_side.css";
 import Google_Login_Oauth from "../../Google/Google_Login_Oauth";
-
-const clientId =
-  "852734223308-ipm7cg5h9g1s51r966gkrjhtaqb2b79d.apps.googleusercontent.com";
+import { useNavigate } from "react-router-dom";
 
 function Login_left_side() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   const loginHandler = (e: FormEvent): void => {
     e.preventDefault();
@@ -20,8 +19,6 @@ function Login_left_side() {
         <div className="position">
           <div className="google">
             <Google_Login_Oauth />
-            {/* <Google_Login />
-            <Google_Logout /> */}
           </div>
         </div>
         <div>
@@ -58,8 +55,8 @@ function Login_left_side() {
           <hr />
 
           <p>Don't have an account?</p>
-          <button type="button" className="btn-login-singup">
-            Sing up
+          <button type="button" className="btn-login-singup" onClick={() => navigate('/signup')}>
+            Sign up
           </button>
         </div>
       </div>

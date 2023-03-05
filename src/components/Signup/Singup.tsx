@@ -1,8 +1,8 @@
-import React, { FormEvent, useRef } from "react";
+import { FormEvent, useRef } from "react";
 import "./Signup.css";
 import Axios from "axios";
 
-function Singup() {
+function Signup() {
   const usernameSingupRef = useRef<HTMLInputElement>(null);
   const surnamSingupRef = useRef<HTMLInputElement>(null);
   const emailSingupRef = useRef<HTMLInputElement>(null);
@@ -84,7 +84,7 @@ function Singup() {
             </div>
             <div className="remember-me">
               <button type="submit" className="btn-login-singup">
-                Sing up
+                Sign up
               </button>
             </div>
           </form>
@@ -94,4 +94,4 @@ function Singup() {
   );
 }
 
-export default Singup;
+export default Signup;

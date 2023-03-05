@@ -15,6 +15,7 @@
 .logo img {
   padding-right: 1rem;
   height: 60px;
+  cursor: pointer;
 }
 
 .navbar .container {

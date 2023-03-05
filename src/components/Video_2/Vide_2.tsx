@@ -1,15 +1,17 @@
-import React from "react";
 import "./Video.css";
 import video_2 from "../../assets/video2.mp4";
+import { useNavigate } from "react-router-dom";
 
 function Vide_2() {
+  const navigate = useNavigate()
+
   return (
     <div className="hero">
       <video autoPlay loop muted id="video">
         <source src={video_2} type="video/mp4" />
       </video>
 
-<div className="container-video"></div>
+      <div className="container-video"></div>
       <div className="left-video2-side">
         <div className="scrolling-area-video2">
           <div className="scrolling-element-inside">
@@ -41,7 +43,7 @@ function Vide_2() {
           </div>
 
         </div>
-        <button className="btn-video2 btn-hover">Isprobaj</button>
+        <button className="btn-video2 btn-hover" type="button" onClick={() => navigate('/chat')}>Isprobaj</button>
       </div>
     </div>
   );

@@ -19,19 +19,19 @@ function Google_Login_Oauth() {
           onSuccess={(credentialResponse) => {
             const details = jwt_decode(credentialResponse.credential!);
             // @ts-ignore
-            const {email, email_verified} = details
+            const { email, email_verified } = details
             console.log(email, email_verified)
-            if(email_verified){
+            if (email_verified) {
               Axios.post("http://localhost:5000/auth/loginGoogle", {
-      email,
-    })
-      .then((res) => {
-        console.log("logged in", res);
-      })
-      .catch((err:any) => {
-        console.log(err)
-        throw new Error(err.message);
-      });
+                email,
+              })
+                .then((res) => {
+                  console.log("logged in", res);
+                })
+                .catch((err: any) => {
+                  console.log(err)
+                  throw new Error(err.message);
+                });
             }
           }}
           onError={() => {
@@ -41,7 +41,7 @@ function Google_Login_Oauth() {
           shape="circle"
         />
       </GoogleOAuthProvider>
-      <button onClick={() => googleLogout()}>Log out</button>
+      {/* <button onClick={() => googleLogout()}>Log out</button> */}
     </div>
   );
 }

@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Info_1.css";
 
 function Info_1() {
+  const navigate = useNavigate()
   return (
     <div className="container-info1">
       <div className="left-info1-side">
@@ -20,7 +22,7 @@ function Info_1() {
             Mogućnosti su beskonačne i zavise samo od vas samih.
           </p>
 
-          <button className="btn-info btn-hover">ISPROBAJ</button>
+          <button className="btn-info btn-hover" onClick={() => navigate('/chat')} type="button">ISPROBAJ</button>
         </div>
       </div>
       <div className="right-info1-side"></div>
