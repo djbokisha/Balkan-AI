@@ -1,7 +1,7 @@
 import React from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
-
+import Axios from "axios";
 import jwt_decode from "jwt-decode";
 
 function Google_Login_Oauth() {
@@ -10,8 +10,7 @@ function Google_Login_Oauth() {
     console.log("gasi");
   };
 
-  const clientId =
-    "935014944125-p2kpcva18t13mgm79hl5u3p55sbd8ufa.apps.googleusercontent.com";
+  const clientId = import.meta.env.VITE_CLIENT_ID_GOOGLE;
 
   return (
     <div>
@@ -19,13 +18,27 @@ function Google_Login_Oauth() {
         <GoogleLogin
           onSuccess={(credentialResponse) => {
             const details = jwt_decode(credentialResponse.credential!);
-
-            console.log(details);
-            console.log(credentialResponse);
+            // @ts-ignore
+            const {email, email_verified} = details
+            console.log(email, email_verified)
+            if(email_verified){
+              Axios.post("http://localhost:5000/auth/loginGoogle", {
+      email,
+    })
+      .then((res) => {
+        console.log("logged in", res);
+      })
+      .catch((err:any) => {
+        console.log(err)
+        throw new Error(err.message);
+      });
+            }
           }}
           onError={() => {
             console.log("Login Failed");
           }}
+          type="icon"
+          shape="circle"
         />
       </GoogleOAuthProvider>
       <button onClick={() => googleLogout()}>Log out</button>

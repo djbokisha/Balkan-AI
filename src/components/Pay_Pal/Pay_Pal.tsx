@@ -6,9 +6,9 @@ function Pay_Pal() {
   return (
     <div className="paypal">
       <PayPalScriptProvider
-        options={{ "client-id": import.meta.env.VITE_CLIENT_ID }}
+        options={{ "client-id": import.meta.env.VITE_CLIENT_ID_PAYPAL }}
       >
-        <PayPalButtons
+        <PayPalButtons className="index"
           createOrder={(data, actions) => {
             return actions.order.create({
               purchase_units: [
@@ -25,6 +25,7 @@ function Pay_Pal() {
             const name = details.payer.name!.given_name;
             alert("Transaction completed by " + name);
             console.log("Transaction completed by " + name);
+            console.log(details)
           }}
         />
       </PayPalScriptProvider>
