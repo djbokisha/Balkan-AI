@@ -1,4 +1,3 @@
-import React from "react";
 import { Helmet } from "react-helmet-async";
 import {
   createBrowserRouter, Outlet,
@@ -48,9 +47,7 @@ function App(): JSX.Element {
         <title>Balkan AI</title>
         <link rel="canonical" href="#" />
       </Helmet>
-      <React.StrictMode>
-        <RouterProvider router={router} />
-      </React.StrictMode>
+      <RouterProvider router={router} />
     </>
   );
 }
