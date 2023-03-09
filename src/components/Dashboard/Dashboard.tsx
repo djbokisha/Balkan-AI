@@ -1,6 +1,5 @@
-import React from "react";
-import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
+import "./Dashboard.css";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -10,11 +9,15 @@ function Dashboard() {
       <h3>Tokeni : 18750</h3>
 
       <div className="buttons-dashboard">
-        <button type="button" onClick={() => navigate("/chat")}>Pokreni Balkan AI</button>
+        <button type="button" onClick={() => navigate("/chat")}>
+          Pokreni Balkan AI
+        </button>
         <button type="button" onClick={() => navigate("/paypal")}>
           Pretplati se
         </button>
-        <button type="button" onClick={() => navigate("/changepassword")}>Promeni Lozinku</button>
+        <button type="button" onClick={() => navigate("/changepassword")}>
+          Promeni Lozinku
+        </button>
       </div>
     </div>
   );

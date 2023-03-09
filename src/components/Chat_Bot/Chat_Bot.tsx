@@ -25,7 +25,7 @@ function Chat_Bot() {
         model: "text-davinci-003",
         prompt: input.current?.value,
         temperature: 0.5,
-        max_tokens: 150,
+        max_tokens: 250,
       });
       setResult(response.data.choices[0].text!);
     } catch (error) {
