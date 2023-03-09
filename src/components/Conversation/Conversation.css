@@ -9,11 +9,12 @@
   background-color: black;
   padding: 20px 0;
   height: 30vh;
+  font-family: helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman,
+    sans-serif;
 }
 .input {
   display: flex;
   width: 70%;
-
 }
 
 .input input {
@@ -32,6 +33,11 @@
   justify-content: center;
   align-items: flex-start;
   padding-left: 20%;
+}
+.content p {
+  font: italic normal normal 16px/1.4em helvetica-w01-roman, helvetica-w02-roman,
+    helvetica-lt-w10-roman, sans-serif;
+    color: white;
 }
 
 .content button {

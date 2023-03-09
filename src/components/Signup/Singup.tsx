@@ -4,7 +4,6 @@ import Axios from "axios";
 
 function Signup() {
   const usernameSingupRef = useRef<HTMLInputElement>(null);
-  const surnamSingupRef = useRef<HTMLInputElement>(null);
   const emailSingupRef = useRef<HTMLInputElement>(null);
   const passwordSingupRef = useRef<HTMLInputElement>(null);
   const repeatPasswordSingupRef = useRef<HTMLInputElement>(null);
@@ -40,56 +39,60 @@ function Signup() {
 
   return (
     <div className="container-signup">
-      <div className="signup">
-        <p>Singup</p>
-        <div>
-          <form
-            onSubmit={(e: FormEvent) => singupHandler(e)}
-            ref={formSingupRef}
-          >
-            <div className="name-singup">
-              <label htmlFor="">Username</label>
-              <input
-                type="text"
-                placeholder="Username"
-                ref={usernameSingupRef}
-              />
-            </div>
+      <div className="left-login-side">
+        <div className="signup">
+          <p>Sign up</p>
+          <div>
+            <form
+              onSubmit={(e: FormEvent) => singupHandler(e)}
+              ref={formSingupRef}
+            >
+              <div className="name-singup">
+                <label htmlFor="">Username</label>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  ref={usernameSingupRef}
+                />
+              </div>
 
-            <div className="email-singup">
-              <label htmlFor="">Email address</label>
-              <input
-                type="email"
-                placeholder="Email address"
-                ref={emailSingupRef}
-              />
-            </div>
-            <div className="password-singup">
-              <label htmlFor="">Password</label>
-              <input
-                type="password"
-                placeholder="Password"
-                autoComplete="on"
-                ref={passwordSingupRef}
-              />
-            </div>
-            <div className="password-singup">
-              <label htmlFor="">Repeat password</label>
-              <input
-                type="password"
-                placeholder="Repeat password"
-                autoComplete="on"
-                ref={repeatPasswordSingupRef}
-              />
-            </div>
-            <div className="remember-me">
-              <button type="submit" className="btn-login-singup">
-                Sign up
-              </button>
-            </div>
-          </form>
+              <div className="email-singup">
+                <label htmlFor="">Email address</label>
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  ref={emailSingupRef}
+                />
+              </div>
+              <div className="password-singup">
+                <label htmlFor="">Password</label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  autoComplete="on"
+                  ref={passwordSingupRef}
+                />
+              </div>
+              <div className="password-singup">
+                <label htmlFor="">Repeat password</label>
+                <input
+                  type="password"
+                  placeholder="Repeat password"
+                  autoComplete="on"
+                  ref={repeatPasswordSingupRef}
+                />
+              </div>
+              <div className="remember-me">
+                <button type="submit" className="btn-login-singup">
+                  Sign up
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
+
+      <div className="right-login-side"></div>
     </div>
   );
 }

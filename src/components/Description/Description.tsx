@@ -1,12 +1,10 @@
 import React from "react";
 import "./Decription.css";
+import { forwardRef } from "react";
 
-function Description() {
-
-
-  
+const Description = forwardRef((props, ref: any) => {
   return (
-    <div className="container-desciption">
+    <div className="container-desciption" id="description" ref={ref}>
       <div className="left-desciption-side">
         <div className="scrolling-area">
           <div className="scrolling-element-inside">
@@ -41,6 +39,6 @@ function Description() {
       <div id="right" className="right-desciption-side"></div>
     </div>
   );
-}
+});
 
 export default Description;
