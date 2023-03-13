@@ -16,9 +16,8 @@ function Contact() {
     const email = emailRef.current!.value;
     const message = messageRef.current!.value;
 
-
     console.log(name, surname, email, message);
-    formRef.current?.reset()
+    formRef.current?.reset();
   };
   return (
     <div className="container-contact">
@@ -62,6 +61,7 @@ function Contact() {
 
             <div className="textarea">
               <textarea
+                className="textarea-form"
                 name="textarea"
                 id="text"
                 cols={40}

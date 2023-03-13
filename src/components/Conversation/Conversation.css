@@ -1,11 +1,15 @@
 .conversation h1 {
   text-align: center;
   margin: 0;
+  color: #cad2c5;
+  font-size: 30px;
 }
 
 .conversation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
-  color: wheat;
   background-color: black;
   padding: 20px 0;
   height: 30vh;
@@ -37,7 +41,7 @@
 .content p {
   font: italic normal normal 16px/1.4em helvetica-w01-roman, helvetica-w02-roman,
     helvetica-lt-w10-roman, sans-serif;
-    color: white;
+  color: #cad2c5;
 }
 
 .content button {

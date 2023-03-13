@@ -9,6 +9,7 @@ import Signup from "./components/Signup/Singup";
 import ErrorPage from "./pages/Error-Page";
 import Home from "./pages/Home";
 import Change_password from "./components/Change_password/Change_password";
+import Admin_dashboard from "./components/Admin_dashboard/Admin_dashboard";
 
 function App(): JSX.Element {
   const router = createBrowserRouter([
@@ -44,6 +45,10 @@ function App(): JSX.Element {
         {
           path: "changepassword",
           element: <Change_password />,
+        },
+        {
+          path: "admindashboard",
+          element: <Admin_dashboard />,
         },
       ],
     },

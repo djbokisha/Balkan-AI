@@ -1,0 +1,136 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.filter-options {
+  margin: 20px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+.rmsc.multi-select {
+  width: 100%;
+}
+.condition-btn {
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: white;
+}
+.show-btn {
+  font-size: 5px;
+  border: none;
+  font-weight: bold;
+  background-color: white;
+}
+select {
+  background-color: #fff;
+  border: 1px solid #c2cdd6;
+  border-radius: 4px;
+  box-shadow: none !important;
+  height: 40px;
+  /* min-width: 100px; */
+  padding-bottom: 7px;
+  padding-right: 32px;
+  padding-top: 7px;
+  text-align: left;
+  margin-right: 3% !important;
+  cursor: pointer;
+}
+/* #store>option{
+  height: 50vh !important;
+} */
+.cross-btn {
+  border: none;
+  background-color: white;
+}
+.main-search {
+  width: 366px;
+  padding: 10px 0;
+  border-radius: 5px;
+}
+
+button.addfilter-btn {
+  padding: 20px;
+  color: #0079ca;
+  font-size: 12px;
+}
+.addfilter-btn {
+  border: none;
+  background-color: white;
+  color: #0079ca;
+}
+.ant-popover.ant-popover-placement-bottom {
+  width: 50%;
+}
+svg:not(:root) {
+  overflow: hidden;
+  font-size: 17px;
+  /* padding-top: 10px; */
+}
+.filter-btn-text {
+  font-size: 19px;
+  background-color: #ebf4fb;
+  border: 2px solid #2e7db3;
+  color: #0079ca;
+  font-weight: 500;
+  padding: 10px 18px 10px 17px;
+
+  border-radius: 5px;
+}
+.filter-btn-text:hover {
+  background-color: #0079ca;
+  color: white;
+}
+input.main-search {
+  padding-top: 20px;
+}
+
+.input-filter-btn {
+  display: flex;
+  justify-content: space-around;
+  max-width: 32%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.filter {
+  width: 100px;
+}
+.filter-btn {
+  padding: 15px 0 15px 0px;
+  background-color: #ebf4fb;
+  border-color: #0079ca;
+  color: #0079ca;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 2px solid #0079ca;
+}
+.filter-btn:hover {
+  background-color: #0079ca;
+  color: #ebf4fb;
+}
+.ft-text {
+  font-size: 17px;
+}
+.first-input,
+.second-input {
+  border: 2px solid #0079ca !important ;
+  width: 100% !important;
+}

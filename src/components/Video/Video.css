@@ -25,9 +25,27 @@
   padding: 1rem;
   text-align: center;
 }
+ 
+.hero-text h1{
+  font-family: helvetica-w01-roman,helvetica-w02-roman,helvetica-lt-w10-roman,sans-serif;
+  letter-spacing: 0.1em;
+  font-size: 64px;
+  padding: 0;
+  margin: 1rem;
+  font-weight: 300;
+  color: #CAD2C5;
+}
+  
+
 
 .hero p {
   font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  font: normal normal normal 24px/1.4em montserrat,sans-serif;
+  color: #CAD2C5;
+  font-weight: 300;
+
+
 }
 
 .hero .btn {
@@ -35,6 +53,7 @@
   cursor: pointer;
   background: transparent;
   border: none;
+  font-weight: 300;
 }
 
 .btn img{

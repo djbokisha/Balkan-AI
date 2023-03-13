@@ -17,6 +17,7 @@
   background-color: rgb(75 85 99);
   padding: 1rem;
   color: white;
+  resize: none;
 }
 
 .btn-chatbot {

@@ -10,28 +10,17 @@ const Description = forwardRef((props, ref: any) => {
           <div className="scrolling-element-inside">
             <h2>BALKAN AI:</h2>
             <p>
-              BALKAN AI: Naš AI chatbot će vam pomoći da brzo i efikasno
-              pronađete informacije, što će vam uštedeti vreme i omogućiti da se
-              fokusirate na svoje ciljeve.
-            </p>
-            <p>
-              BALKAN AI chatbot je obučen da odgovori na specifična pitanja, te
-              da rešava specifične probleme naših korisnika. Zato je toliko
-              popularan među studentima.
+              Naš AI chatbot će vam pomoći da brzo i efikasno pronađete
+              informacije, što će vam uštedeti vreme i omogućiti da se
+              fokusirate na svoje ciljeve. Mnogi naši korsnici koriste Balkan AI
+              umesto Google pretraživača kada su u potrazi za informacijama.
             </p>
 
-            <hr />
-
-            <h2>BALKAN AI:</h2>
             <p>
-              BALKAN AI: Naš AI chatbot će vam pomoći da brzo i efikasno
-              pronađete informacije, što će vam uštedeti vreme i omogućiti da se
-              fokusirate na svoje ciljeve.
-            </p>
-            <p>
-              BALKAN AI chatbot je obučen da odgovori na specifična pitanja, te
-              da rešava specifične probleme naših korisnika. Zato je toliko
-              popularan među studentima.
+              BALKAN AI chatbot je prvi sistem veštačke inteligencije koji
+              koristi naš maternji jezik kako bi odgovorio na sva specifična
+              pitanja. To je glavno objašnjenje toliko velike popularnosti među
+              studentima i srednjoškolcima.
             </p>
           </div>
         </div>

@@ -14,7 +14,7 @@ function Vide_2() {
       <div className="container-video"></div>
       <div className="left-video2-side">
         <div className="scrolling-area-video2">
-          <div className="scrolling-element-inside">
+          <div className="scrolling-element-inside-video2">
             <h2>Zašto izabrati BALKAN AI?</h2>
             <p>
               Nudimo konkretna rešenja za vaše probleme, čineći vas boljim i
