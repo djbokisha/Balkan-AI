@@ -132,6 +132,12 @@ textarea:focus {
 
 
 @media only screen and (max-width: 768px) {
+.container-contact{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
   .name input,
 .surname input,
 .email input {

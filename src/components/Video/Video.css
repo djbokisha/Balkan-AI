@@ -59,3 +59,9 @@
 .btn img{
   width: 35%;
 }
+
+@media only screen and (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 40px;
+  }
+  }
