@@ -4,62 +4,62 @@ import "./Admin_dashboard.css";
 function Admin_dashboard() {
   const data = [
     {
-      name: "sai",
+      username: "sai",
       email: "22",
       tokens: "50",
     },
     {
-      name: "sai",
+      username: "sai",
       email: "22",
       tokens: "75",
     },
     {
-      name: "saifknfkf",
+      username: "saifknfkf",
       email: "29",
       tokens: "65",
     },
     {
-      name: "dfgffgsai",
+      username: "dfgffgsai",
       email: "21",
       tokens: "99",
     },
     {
-      name: "sadsfai",
+      username: "sadsfai",
       email: "28",
       tokens: "55",
     },
     {
-      name: "sharavni",
+      username: "sharavni",
       email: "22",
       tokens: "35",
     },
     {
-      name: "saikrishna",
+      username: "saikrishna",
       email: "18",
       tokens: "95",
     },
     {
-      name: "krishna",
+      username: "krishna",
       email: "26",
       tokens: "75",
     },
     {
-      name: "madhu",
+      username: "madhu",
       email: "20",
       tokens: "65",
     },
     {
-      name: "dev",
+      username: "dev",
       email: "25",
       tokens: "65",
     },
     {
-      name: "rohith",
+      username: "rohith",
       email: "22",
       tokens: "85",
     },
     {
-      name: "mobin",
+      username: "mobin",
       email: "21",
       tokens: "95",
     },
@@ -98,7 +98,7 @@ function Admin_dashboard() {
     return filterdata.map((user, index) => {
       return (
         <tr key={index}>
-          <td> {user.name} </td>
+          <td> {user.username} </td>
           <td> {user.email} </td>
           <td> {user.tokens} </td>
           <td>/</td>
@@ -115,9 +115,9 @@ function Admin_dashboard() {
       <h1>Admin Dashboard</h1>
       <input
         type="text"
-        name="name"
-        placeholder="Name"
-        onChange={(e) => filterFunction(e.target.value, "name")}
+        name="username"
+        placeholder="Username"
+        onChange={(e) => filterFunction(e.target.value, "username")}
       ></input>
       <input
         type="text"
@@ -135,7 +135,7 @@ function Admin_dashboard() {
       <table>
         <thead>
           <tr>
-            <th>name</th>
+            <th>username</th>
             <th>email</th>
             <th>tokens</th>
             <th>last payment</th>

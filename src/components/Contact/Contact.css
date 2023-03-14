@@ -40,8 +40,8 @@
 }
 
 .container-form {
-  width: 540px;
-  height: 530px;
+  width: 80%;
+  height: 75%;
   background-color: rgb(202, 210, 197);
   border-radius: 0.8rem;
 }
@@ -128,4 +128,24 @@ textarea:focus {
   height: 40px;
   border: 1px solid black;
   margin-top: 1rem;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .name input,
+.surname input,
+.email input {
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-color: black;
+  width: 100%;
+}
+
+form h1 {
+  font-size: 1.2em;
+}
+.btn-send{
+  width: 100%;
+}
 }

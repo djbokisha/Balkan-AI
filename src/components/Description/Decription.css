@@ -35,6 +35,22 @@
   color: #fff;
   border-left: 0.5px solid white;
 }
+::-webkit-scrollbar {
+  width: 2px;
+  background-color: transparent;
+
+  
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 10px;
+  border: 0.2px solid black;
+  scrollbar-width: thin;
+
+}
 
 .scrolling-element-inside {
   direction: ltr;
@@ -46,14 +62,13 @@
   font-size: 16px;
   line-height: 1.8em;
   letter-spacing: 0.1em;
-  color: rgb(255,255,255);
+  color: rgb(255, 255, 255);
   font-weight: lighter;
   margin: 1rem 0;
 }
 
-.scrolling-element-inside h2{
-  font: normal normal normal 24px/1.4em montserrat,sans-serif;
+.scrolling-element-inside h2 {
+  font: normal normal normal 24px/1.4em montserrat, sans-serif;
   font-weight: bold;
-  color: #FFE998;
+  color: #ffe998;
 }
-

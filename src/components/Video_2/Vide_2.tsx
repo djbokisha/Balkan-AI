@@ -43,7 +43,7 @@ function Vide_2() {
           </div>
 
         </div>
-        <button className="btn-video2 btn-hover" type="button" onClick={() => navigate('/chat')}>Isprobaj</button>
+        <button className="btn-video2 btn-hover" type="button" onClick={() => navigate('/chat')}>ISPROBAJ</button>
       </div>
     </div>
   );
