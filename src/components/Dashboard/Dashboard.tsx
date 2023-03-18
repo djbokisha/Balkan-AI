@@ -4,8 +4,21 @@ import uplatnica from "../../assets/uplatnica.png";
 import uplatnica1 from "../../assets/uplatnica1.png";
 import pplogo from "../../assets/pplogo.png";
 import btn_bynow from "../../assets/btn_buynow.gif";
+import Axios from "axios"
+import { useEffect } from "react";
 
 function Dashboard() {
+
+
+  useEffect(() => {
+    getUser();
+  }, []);
+  async function getUser() {
+    const { data } = await Axios.get("http://localhost:5000/users/{id}");
+    console.log(data);
+    
+  }
+
   const navigate = useNavigate();
   return (
     <div className="container-dashboar">

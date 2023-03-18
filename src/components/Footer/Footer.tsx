@@ -11,7 +11,7 @@ function Footer() {
   const date = `${current.getFullYear()}`;
 
   return (
-    <div className="container-header">
+    <div className="container-footer">
       <h3>© {date} by BALKAN AI</h3>
       <div className="icons">
         <a href="#" target="_blank">

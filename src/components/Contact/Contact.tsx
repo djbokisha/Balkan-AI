@@ -1,5 +1,6 @@
-import React, { FormEvent, useRef, useState } from "react";
+import { FormEvent, useRef } from "react";
 import "./Contact.css";
+import { z } from "zod";
 
 function Contact() {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -19,6 +20,14 @@ function Contact() {
     console.log(name, surname, email, message);
     formRef.current?.reset();
   };
+
+  const schema = z.object({
+    name: z.string().min(2).max(30),
+    surname: z.string().min(2).max(30),
+    email: z.string().email(),
+    message: z.string().min(2).max(30),
+  });
+
   return (
     <div className="container-contact">
       <div className="left-contact-side">

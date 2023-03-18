@@ -9,6 +9,16 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
   const hadleClick = () => setClick(!click);
+
+   function profile (){
+    navigate('/profile')
+    hadleClick() 
+   }
+
+   function login (){
+    navigate('/login')
+    hadleClick() 
+   }
   return (
     <div className="navbar">
       <div className="container">
@@ -16,11 +26,9 @@ function Navbar() {
           <img src={logo} alt="logo" onClick={() => navigate('/')} />
           <h1>BALKAN AI</h1>
         </div>
-
-        <div className={click ? "nav active" : "nav"}>
-          <button className="btn-login btn-hover" type="button" onClick={() => navigate('/profile')}>Profile</button>
-
-          <button className="btn-login btn-hover" type="button" onClick={() => navigate('/login')}>Log in</button>
+       <div className={click ? "nav active" : "nav"}>
+       <button className="btn-login btn-hover"  type="button" onClick={() => profile() }>Profile</button>
+      <button className="btn-login btn-hover" type="button" onClick={() =>login() }>Log in</button>
         </div>
         <div onClick={() => hadleClick()} className="hamburger">
           {click ? (

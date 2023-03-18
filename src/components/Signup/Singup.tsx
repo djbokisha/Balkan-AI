@@ -1,6 +1,16 @@
 import { FormEvent, useRef } from "react";
 import "./Signup.css";
 import Axios from "axios";
+import { z, ZodType } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+type FormData = {
+  username: string;
+  email: string;
+  password: string;
+  repeatPassword: string;
+};
 
 function Signup() {
   const usernameSingupRef = useRef<HTMLInputElement>(null);
@@ -35,7 +45,22 @@ function Signup() {
       });
 
     formSingupRef.current?.reset();
+   
   };
+
+  const schema: ZodType<FormData> = z
+    .object({
+      username: z.string().min(2).max(30),
+      email: z.string().email(),
+      password: z.string().min(5).max(20),
+      repeatPassword: z.string().min(5).max(20),
+    })
+    .refine((data) => data.password === data.repeatPassword, {
+      message: "Passwor do not match",
+      path: ["repeatPassword"],
+    });
+
+  const { register, handleSubmit } = useForm({ resolver: zodResolver(schema) });
 
   return (
     <div className="container-signup">
@@ -52,6 +77,7 @@ function Signup() {
                 <input
                   type="text"
                   placeholder="Username"
+                  {...register("username")}
                   ref={usernameSingupRef}
                 />
               </div>

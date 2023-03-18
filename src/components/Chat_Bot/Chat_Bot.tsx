@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 
 import "./Chat_Bot.css";
+import { number } from "zod";
 
 function Chat_Bot() {
   const input = useRef<HTMLTextAreaElement | null>(null);
@@ -16,6 +17,7 @@ function Chat_Bot() {
   // const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [totalTokens, setTotalTokens]  = useState  ("")
 
   const handleClick = async () => {
     console.log(input.current?.value);
@@ -28,6 +30,9 @@ function Chat_Bot() {
         max_tokens: 250,
       });
       setResult(response.data.choices[0].text!);
+      // setTotalTokens(response.data.usage?.total_tokens!)
+      console.log(response)
+
     } catch (error) {
       console.error(error);
     }
@@ -50,6 +55,7 @@ function Chat_Bot() {
         </button>
 
         <pre className="result">{result}</pre>
+        <p>{totalTokens}</p>
       </div>
     </main>
   );

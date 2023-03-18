@@ -2,15 +2,38 @@ import { FormEvent, useState } from "react";
 import "./Login_left_side.css";
 import Google_Login_Oauth from "../../Google/Google_Login_Oauth";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 
 function Login_left_side() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const loginHandler = (e: FormEvent): void => {
     e.preventDefault();
     console.log(email, password);
+
+    try {
+      Axios.post("http://localhost:5000/auth/login", {
+        email,
+        password,
+      }).then((res) => {
+        console.log(res);
+        // const access_token = res.data.access_token;
+        // const refreshToken = res.data.refreshToken;
+
+        // console.log("access_token", access_token);
+        // console.log("refreshToken", refreshToken);
+
+        // document.cookie = `jwt=${access_token}; secure; httpOnly; sameSite=Lax`;
+        // console.log(access_token);
+
+        // localStorage.setItem("access_token", access_token);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    // navigate("/profile");
   };
 
   return (
@@ -55,7 +78,11 @@ function Login_left_side() {
           <hr />
 
           <p>Don't have an account?</p>
-          <button type="button" className="btn-login-singup" onClick={() => navigate('/signup')}>
+          <button
+            type="button"
+            className="btn-login-singup"
+            onClick={() => navigate("/signup")}
+          >
             Sign up
           </button>
         </div>

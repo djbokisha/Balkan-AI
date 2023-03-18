@@ -1,10 +1,12 @@
-import React from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import Axios from "axios";
 import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function Google_Login_Oauth() {
+  const navigate = useNavigate();
+
   const logOut = () => {
     googleLogout();
     console.log("gasi");
@@ -19,20 +21,30 @@ function Google_Login_Oauth() {
           onSuccess={(credentialResponse) => {
             const details = jwt_decode(credentialResponse.credential!);
             // @ts-ignore
-            const { email, email_verified } = details
-            console.log(email, email_verified)
+            const { email, email_verified } = details;
+            console.log(email, email_verified);
             if (email_verified) {
               Axios.post("http://localhost:5000/auth/loginGoogle", {
-                email,
+                email: email,
               })
                 .then((res) => {
                   console.log("logged in", res);
+                  const access_token = res.data.access_token;
+                  const refreshToken = res.data.refreshToken;
+                  // console.log("access_token", access_token);
+                  // console.log("refreshToken", refreshToken);
+
+                  document.cookie = `access_token=${access_token}; path=/; HttpOnly`;
+                  console.log(access_token);
                 })
+
                 .catch((err: any) => {
-                  console.log(err)
-                  throw new Error(err.message);
+                  console.log(err);
+                  // throw new Error(err.message);
                 });
             }
+
+            navigate("/profile");
           }}
           onError={() => {
             console.log("Login Failed");
