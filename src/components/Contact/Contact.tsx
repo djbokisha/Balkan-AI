@@ -1,6 +1,15 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, useEffect, useRef } from "react";
 import "./Contact.css";
-import { z } from "zod";
+import { z, ZodType } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+type FormData = {
+  name: string;
+  surname: string;
+  email: string;
+  message: string;
+};
 
 function Contact() {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -21,12 +30,22 @@ function Contact() {
     formRef.current?.reset();
   };
 
-  const schema = z.object({
+  const schema: ZodType<FormData> = z.object({
     name: z.string().min(2).max(30),
     surname: z.string().min(2).max(30),
     email: z.string().email(),
-    message: z.string().min(2).max(30),
+    message: z.string().min(2).max(500),
   });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const submitData = (data: FormData) => {
+    console.log(data);
+  };
 
   return (
     <div className="container-contact">
@@ -44,39 +63,43 @@ function Contact() {
       </div>
       <div className="right-contact-side">
         <div className="container-form">
-          <form onSubmit={(e: FormEvent) => submitHandler(e)} ref={formRef}>
+          <form onSubmit={handleSubmit(submitData)}>
             <h1>KONTAKT</h1>
             <div className="name-surname">
               <div className="name">
                 <label htmlFor="">Ime</label>
-                <input type="text" placeholder="" name="name" ref={nameRef} />
+                <input type="text" placeholder="" {...register("name")} />
+                {errors.name && (
+                  <span className="error-span"> {errors.name.message}</span>
+                )}
               </div>
 
               <div className="surname">
                 <label htmlFor="">Prezime</label>
-                <input
-                  type="text"
-                  placeholder=""
-                  name="surname"
-                  ref={surnmeRef}
-                />
+                <input type="text" placeholder="" {...register("surname")} />
+                {errors.surname && (
+                  <span className="error-span"> {errors.surname.message}</span>
+                )}
               </div>
             </div>
             <div className="email">
               <label htmlFor="">Email</label>
-              <input type="email" placeholder="" name="email" ref={emailRef} />
+              <input type="email" placeholder="" {...register("email")} />
+              {errors.email && (
+                <span className="error-span"> {errors.email.message}</span>
+              )}
             </div>
             <p>Poruka</p>
 
             <div className="textarea">
               <textarea
                 className="textarea-form"
-                name="textarea"
                 id="text"
                 cols={40}
                 rows={10}
-                ref={messageRef}
+                {...register("message")}
               ></textarea>
+
               <button type="submit" className="btn-send">
                 Posalji
               </button>
