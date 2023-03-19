@@ -13,41 +13,6 @@ type FormData = {
 };
 
 function Signup() {
-  const usernameSingupRef = useRef<HTMLInputElement>(null);
-  const emailSingupRef = useRef<HTMLInputElement>(null);
-  const passwordSingupRef = useRef<HTMLInputElement>(null);
-  const repeatPasswordSingupRef = useRef<HTMLInputElement>(null);
-
-  const formSingupRef = useRef<HTMLFormElement>(null);
-
-  const singupHandler = (e: FormEvent) => {
-    e.preventDefault();
-
-    const username = usernameSingupRef.current?.value;
-    const email = emailSingupRef.current?.value;
-    const password = passwordSingupRef.current?.value;
-    const repeatPassword = repeatPasswordSingupRef.current?.value;
-
-    console.log(username, email, password, repeatPassword);
-
-    Axios.post("http://localhost:5000/auth/signup", {
-      username,
-      email,
-      password,
-      isEmailVerified: false,
-      repeatPassword,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    formSingupRef.current?.reset();
-   
-  };
-
   const schema: ZodType<FormData> = z
     .object({
       username: z.string().min(2).max(30),
@@ -56,11 +21,32 @@ function Signup() {
       repeatPassword: z.string().min(5).max(20),
     })
     .refine((data) => data.password === data.repeatPassword, {
-      message: "Passwor do not match",
+      message: "Passwords do not match",
       path: ["repeatPassword"],
     });
 
-  const { register, handleSubmit } = useForm({ resolver: zodResolver(schema) });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const submitData = (data: FormData) => {
+    console.log(data);
+
+    Axios.post("http://localhost:5000/auth/signup", {
+      ...data,
+      isEmailVerified: false,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="container-signup">
@@ -68,45 +54,59 @@ function Signup() {
         <div className="signup">
           <p>Sign up</p>
           <div>
-            <form
-              onSubmit={(e: FormEvent) => singupHandler(e)}
-              ref={formSingupRef}
-            >
+            <form onSubmit={handleSubmit(submitData)}>
               <div className="name-singup">
                 <label htmlFor="">Username</label>
                 <input
                   type="text"
+                  id="username"
                   placeholder="Username"
                   {...register("username")}
-                  ref={usernameSingupRef}
                 />
+                {errors.username && (
+                  <span className="error-span"> {errors.username.message}</span>
+                )}
               </div>
 
               <div className="email-singup">
                 <label htmlFor="">Email address</label>
                 <input
                   type="email"
+                  id="email"
                   placeholder="Email address"
-                  ref={emailSingupRef}
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <span className="error-span"> {errors.email.message}</span>
+                )}
               </div>
               <div className="password-singup">
                 <label htmlFor="">Password</label>
                 <input
                   type="password"
+                  id="password"
                   placeholder="Password"
                   autoComplete="on"
-                  ref={passwordSingupRef}
+                  {...register("password")}
                 />
+                {errors.password && (
+                  <span className="error-span"> {errors.password.message}</span>
+                )}
               </div>
               <div className="password-singup">
-                <label htmlFor="">Repeat password</label>
+                <label htmlFor="">Confirm Password</label>
                 <input
                   type="password"
-                  placeholder="Repeat password"
+                  id="repeatPassword"
+                  placeholder="Confirm Password"
                   autoComplete="on"
-                  ref={repeatPasswordSingupRef}
+                  {...register("repeatPassword")}
                 />
+                {errors.repeatPassword && (
+                  <span className="error-span">
+                    {errors.repeatPassword.message}
+                  </span>
+                )}
               </div>
               <div className="remember-me">
                 <button type="submit" className="btn-login-singup">

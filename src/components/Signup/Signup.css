@@ -44,3 +44,8 @@
   align-items: flex-start;
   padding-top: 2rem;
 }
+
+.error-span{
+  color: red;
+  font-size: 10px;
+}

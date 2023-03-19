@@ -3,37 +3,40 @@ import "./Login_left_side.css";
 import Google_Login_Oauth from "../../Google/Google_Login_Oauth";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import { z, ZodType } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 function Login_left_side() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const loginHandler = (e: FormEvent): void => {
-    e.preventDefault();
-    console.log(email, password);
+  type FormData = {
+    email: string;
+    password: string;
+  };
 
+  const schema: ZodType<FormData> = z.object({
+    email: z.string().email(),
+    password: z.string().min(5).max(20),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const submitData = async (data: FormData) => {
     try {
-      Axios.post("http://localhost:5000/auth/login", {
-        email,
-        password,
-      }).then((res) => {
-        console.log(res);
-        // const access_token = res.data.access_token;
-        // const refreshToken = res.data.refreshToken;
-
-        // console.log("access_token", access_token);
-        // console.log("refreshToken", refreshToken);
-
-        // document.cookie = `jwt=${access_token}; secure; httpOnly; sameSite=Lax`;
-        // console.log(access_token);
-
-        // localStorage.setItem("access_token", access_token);
+      await Axios.post("http://localhost:5000/auth/login", data, {
+        withCredentials: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
     }
-    // navigate("/profile");
+    navigate("/profile");
   };
 
   return (
@@ -45,16 +48,17 @@ function Login_left_side() {
           </div>
         </div>
         <div>
-          <form onSubmit={(e: FormEvent) => loginHandler(e)}>
+          <form onSubmit={handleSubmit(submitData)}>
             <div className="email-login">
               <label htmlFor="">Email address</label>
               <input
                 type="email"
                 placeholder="Email address"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                {...register("email")}
               />
+              {errors.email && (
+                <span className="error-span"> {errors.email.message}</span>
+              )}
             </div>
             <div className="password-login">
               <label htmlFor="">Password</label>
@@ -62,10 +66,11 @@ function Login_left_side() {
                 type="password"
                 placeholder="Password"
                 autoComplete="on"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                {...register("password")}
               />
+              {errors.password && (
+                <span className="error-span"> {errors.password.message}</span>
+              )}
             </div>
             <div className="remember-me">
               <button type="submit" className="btn-login-singup">
