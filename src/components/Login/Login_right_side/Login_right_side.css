@@ -1,0 +1,9 @@
+.right-login-side {
+  height: 100%;
+  width: 50vw;
+  background-image: url("../../../assets/image1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
+  background-size: contain;
+}

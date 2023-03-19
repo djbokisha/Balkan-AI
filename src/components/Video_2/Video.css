@@ -1,0 +1,51 @@
+.left-video2-side {
+  height: 100%;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #cad2c5;
+  font-family: helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman,
+    sans-serif;
+}
+
+.scrolling-area-video2 {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  padding: 3rem;
+  background: black;
+  direction: rtl;
+  color: #fff;
+  border-left: 0.5px solid white;
+  border-radius: 30px;
+}
+
+.scrolling-element-inside-video2 {
+  direction: ltr;
+  max-height: 250px;
+}
+.scrolling-element-inside-video2 h2 {
+  letter-spacing: 0.16em;
+  font-weight: bold;
+  color: #cad2c5;
+  font-size: 24px;
+  line-height: normal;
+  font-family: sans-serif;
+}
+.scrolling-element-inside-video2 p{
+  font-size: 16px;
+  line-height: 1.8em;
+  font-family: sans-serif;
+  margin-top: 3rem;
+}
+.btn-video2 {
+  background-color: #CAD2C5;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid white;
+  width: 120px;
+  height: 40px;
+  margin-top: 1rem;
+}
