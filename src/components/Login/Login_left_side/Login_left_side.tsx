@@ -6,14 +6,18 @@ import Axios from "axios";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "../../../hooks/useAuth";
+// import { jwtInterceptor } from "../../../services/createAxiosClient"
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 function Login_left_side() {
   const navigate = useNavigate();
-
-  type FormData = {
-    email: string;
-    password: string;
-  };
+  const { login } = useAuth();
+  
 
   const schema: ZodType<FormData> = z.object({
     email: z.string().email(),
@@ -30,12 +34,26 @@ function Login_left_side() {
 
   const submitData = async (data: FormData) => {
     try {
-      await Axios.post("http://localhost:5000/auth/login", data, {
-        withCredentials: true,
+      const loginResponse = await Axios.post(
+        "http://localhost:5000/auth/login",
+        data
+      );
+      console.log(loginResponse);
+
+      console.log(loginResponse.data.id);
+      console.log(loginResponse.config.data);
+
+      login({
+        id: loginResponse.data.id,
+        access_token: loginResponse.data.access_token,
+        refreshToken: loginResponse.data.refreshToken,
+        name: "",
+        email: "",
       });
     } catch (error: any) {
       console.log(error);
     }
+
     navigate("/profile");
   };
 

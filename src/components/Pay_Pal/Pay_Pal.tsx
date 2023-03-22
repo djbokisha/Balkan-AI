@@ -40,13 +40,13 @@ function Pay_Pal() {
                 params: {
                   email: email,
                 },
-                withCredentials: true,
               })
                 .then((res) => {
                   console.log(res);
                 })
                 .catch((err) => {
                   console.log(err);
+                  console.error();
                 });
             }
             Axios.post("http://localhost:5000/users", {

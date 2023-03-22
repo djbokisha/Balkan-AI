@@ -7,20 +7,6 @@ function Admin_dashboard() {
   const [appData, setAppData] = useState<User[] | []>([]);
   const [filterdata, setfilterData] = useState(appData);
 
-  // const searchJobs = (searchKey) => {
-  //   const text = data.filter((obj) =>
-  //     Object.keys(obj).some((key) =>
-  //       obj[key].toLowerCase().includes(searchKey.toLowerCase())
-  //     )
-  //   );
-  //   setfilterData(text);
-  //   if (searchKey !== "") {
-  //     return text;
-  //   } else {
-  //     setfilterData(data);
-  //   }
-  // };
-
   useEffect(() => {
     getUsers();
   }, []);
@@ -37,10 +23,27 @@ function Admin_dashboard() {
     }
   };
 
+
+
+
   async function getUsers() {
     const { data } = await Axios.get("http://localhost:5000/users");
+
+    console.log(data);
     setAppData(data);
     setfilterData(data);
+  }
+
+
+
+  function addTokens (user : Partial<User>){
+
+    Axios.patch("http://localhost:5000/tokens/addTokens", null, {
+      params: {
+        email: user.email!,
+      },
+    })
+
   }
 
   const tableData = () => {
@@ -48,12 +51,16 @@ function Admin_dashboard() {
       return (
         <tbody key={index}>
           <tr>
+            <td>{user.id!}</td>
             <td> {user.username!} </td>
             <td> {user.email!} </td>
             <td> {user.tokens!} </td>
             <td> {user.payments!} </td>
             <td>
-              <button>Remove</button> / <button>Add Tokens</button>
+              <button>Remove</button> / <button onClick={() => addTokens(user)}>Add Tokens</button>
+
+
+
             </td>
           </tr>
         </tbody>
@@ -80,6 +87,7 @@ function Admin_dashboard() {
       <table>
         <thead>
           <tr>
+            <th>id</th>
             <th>username</th>
             <th>email</th>
             <th>tokens</th>
