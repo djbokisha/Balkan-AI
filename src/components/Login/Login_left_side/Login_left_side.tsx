@@ -7,8 +7,7 @@ import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "../../../hooks/useAuth";
-// import { jwtInterceptor } from "../../../services/createAxiosClient"
-
+import axios from "../../../services/createAxiosClient";
 type FormData = {
   email: string;
   password: string;
@@ -17,7 +16,8 @@ type FormData = {
 function Login_left_side() {
   const navigate = useNavigate();
   const { login } = useAuth();
-  
+
+  // const client = axios;
 
   const schema: ZodType<FormData> = z.object({
     email: z.string().email(),
@@ -50,6 +50,7 @@ function Login_left_side() {
         name: "",
         email: "",
       });
+      // jwtInterceptor()
     } catch (error: any) {
       console.log(error);
     }

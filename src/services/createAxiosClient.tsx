@@ -1,26 +1,49 @@
 import axios from "axios";
- 
-const jwtInterceptor = axios.create({});
- 
-jwtInterceptor.interceptors.response.use(
-  (response) => {
-    return response;
+import { toast } from "react-toastify";
+
+const client = axios.interceptors.request.use(
+  (config) => {
+    const token = window.localStorage.getItem("jwt");
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
   },
-  async (error) => {
-    if (error.response.status === 401) {
-      await axios
-        .get("http://localhost:5000/refresh-token", {
-          withCredentials: true,
-        })
-        .catch((err) => {
-          return Promise.reject(err);
-        });
-      console.log(error.config);
-      return axios(error.config);
-    } else {
-      return Promise.reject(error);
-    }
+  (error) => {
+    return Promise.reject(error);
   }
 );
- 
-export default jwtInterceptor;
+
+client.interceptors.response.use(undefined, (error) => {
+  if (error.message === "Network Error" && !error.response) {
+    toast.error("Network error - make sure API is running!");
+  }
+  const { status, data, config, headers } = error.response;
+  if (status === 404) {
+    console.log("Network error - not found");
+  }
+  if (
+    status === 401 &&
+    headers["www-authenticate"] ===
+      'Bearer error="invalid_token", error_description="The token is expired"'
+  ) {
+    window.localStorage.removeItem("jwt");
+
+    toast.info("Your session has expired, please login again");
+  }
+  if (
+    status === 400 &&
+    config.method === "get" &&
+    data.errors.hasOwnProperty("id")
+  ) {
+    console.log("not found ");
+  }
+  if (status === 500) {
+    if (data.errors === "Value cannot be null. (Parameter 'userName')") {
+      toast.info("Please login again.");
+    } else {
+      toast.error("Server error - check the terminal for more info!");
+    }
+  }
+  throw error.response;
+});
+
+export default client

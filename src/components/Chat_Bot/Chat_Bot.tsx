@@ -3,6 +3,7 @@ import { Configuration, OpenAIApi } from "openai";
 
 import "./Chat_Bot.css";
 import { number } from "zod";
+import Axios from "axios";
 
 function Chat_Bot() {
   const input = useRef<HTMLTextAreaElement | null>(null);
@@ -17,10 +18,27 @@ function Chat_Bot() {
   // const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
-  const [totalTokens, setTotalTokens]  = useState  ("")
+  const [totalTokens, setTotalTokens] = useState("");
 
   const handleClick = async () => {
     console.log(input.current?.value);
+    const question = input.current?.value;
+
+    {
+      Axios.post("http://localhost:5000/open-ai/checkModeration", null, {
+        params: {
+          question: question,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.error();
+        });
+    }
+
     setLoading(true);
     try {
       const response = await openai.createCompletion({
@@ -31,8 +49,7 @@ function Chat_Bot() {
       });
       setResult(response.data.choices[0].text!);
       // setTotalTokens(response.data.usage?.total_tokens!)
-      console.log(response)
-
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -50,7 +67,11 @@ function Chat_Bot() {
           ref={input}
         ></textarea>
 
-        <button onClick={handleClick} disabled={loading} className="btn-chatbot">
+        <button
+          onClick={handleClick}
+          disabled={loading}
+          className="btn-chatbot"
+        >
           {loading ? "Generating..." : "Generate"}
         </button>
 
