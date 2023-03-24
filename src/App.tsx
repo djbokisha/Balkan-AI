@@ -11,7 +11,14 @@ import Home from "./pages/Home";
 import Change_password from "./components/Change_password/Change_password";
 import Admin_dashboard from "./components/Admin_dashboard/Admin_dashboard";
 
+import { AuthContext } from "./context/AuthContext";
+import { useAuth } from "./hooks/useAuth";
+
+
 function App(): JSX.Element {
+
+  const { user, login, logout } = useAuth();
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -59,7 +66,9 @@ function App(): JSX.Element {
         <title>Balkan AI</title>
         <link rel="canonical" href="#" />
       </Helmet>
-      <RouterProvider router={router} />
+      <AuthContext.Provider value={{ user, setUser(user) {} }}>
+        <RouterProvider router={router} />
+      </AuthContext.Provider>
     </>
   );
 }

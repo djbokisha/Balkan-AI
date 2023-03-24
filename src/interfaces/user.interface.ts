@@ -7,4 +7,5 @@ export interface User {
   isEmailVerified?: boolean;
   payments?: string[];
   tokens?: number;
+  id?: string
 }

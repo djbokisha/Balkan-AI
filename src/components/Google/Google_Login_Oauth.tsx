@@ -3,14 +3,14 @@ import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import Axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useAuth } from "../../hooks/useAuth";
 
 function Google_Login_Oauth() {
-  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const logOut = () => {
-    googleLogout();
-    console.log("gasi");
-  };
+  const navigate = useNavigate();
+  const [cookies, setCookies, removeCookie] = useCookies();
 
   const clientId = import.meta.env.VITE_CLIENT_ID_GOOGLE;
 
@@ -31,16 +31,26 @@ function Google_Login_Oauth() {
                   console.log("logged in", res);
                   const access_token = res.data.access_token;
                   const refreshToken = res.data.refreshToken;
-                  // console.log("access_token", access_token);
-                  // console.log("refreshToken", refreshToken);
 
-                  document.cookie = `access_token=${access_token}; path=/; HttpOnly`;
-                  console.log(access_token);
+                  console.log("access_token", access_token);
+                  console.log("refreshToken", refreshToken);
+
+                  login({
+                    id: "",
+                    access_token: access_token,
+                    refreshToken: refreshToken,
+                    name: "",
+                    email: "",
+                  });
+
+                  setCookies("access_token", access_token, { httpOnly: true });
+                  // setCookies("refreshToken", refreshToken);
                 })
 
                 .catch((err: any) => {
                   console.log(err);
                   // throw new Error(err.message);
+                  console.error();
                 });
             }
 
@@ -53,7 +63,6 @@ function Google_Login_Oauth() {
           shape="circle"
         />
       </GoogleOAuthProvider>
-      {/* <button onClick={() => googleLogout()}>Log out</button> */}
     </div>
   );
 }

@@ -6,14 +6,22 @@ import pplogo from "../../assets/pplogo.png";
 import btn_bynow from "../../assets/btn_buynow.gif";
 import Axios from "axios";
 import { useEffect } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 function Dashboard() {
+  const { logout } = useAuth();
+
+  const Logout = () => {
+    logout();
+
+    navigate("/login");
+  };
   useEffect(() => {
     getUser();
   }, []);
   async function getUser() {
-    const { data } = await Axios.get(`"http://localhost:5000/users/{id}"`);
-    console.log(data);
+    // const { data } = await Axios.get(`http://localhost:5000/users/${id}`);
+    // console.log(data);
   }
 
   const navigate = useNavigate();
@@ -33,6 +41,9 @@ function Dashboard() {
         </button>
         <button type="button" onClick={() => navigate("/changepassword")}>
           Promeni Lozinku
+        </button>
+        <button type="button" onClick={() => Logout()}>
+          IZLOGUJ SE
         </button>
       </div>
       <div className="balkanai-info">
