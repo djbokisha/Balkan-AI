@@ -30,9 +30,7 @@ function Login_left_side() {
 
   const submitData = async (data: FormData) => {
     try {
-      await Axios.post("http://localhost:5000/auth/login", data, {
-        withCredentials: true,
-      });
+      await Axios.post("http://localhost:5000/auth/login", data);
     } catch (error: any) {
       console.log(error);
     }

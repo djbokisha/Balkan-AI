@@ -1,4 +1,3 @@
-import React from "react";
 import "./Login.css";
 
 import Login_left_side from "./Login_left_side/Login_left_side";
