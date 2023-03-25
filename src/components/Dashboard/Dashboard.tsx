@@ -5,31 +5,34 @@ import uplatnica1 from "../../assets/uplatnica1.png";
 import pplogo from "../../assets/pplogo.png";
 import btn_bynow from "../../assets/btn_buynow.gif";
 import Axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { User } from "../../interfaces/user.interface";
 
 function Dashboard() {
   const { logout } = useAuth();
-
+  const { getUser } = useAuth();
+  const [user, setUser] = useState<User | null>(null)
   const Logout = () => {
     logout();
 
     navigate("/login");
   };
   useEffect(() => {
-    getUser("asd");
+    fetchUserData(getUser()?.userId!);
   }, []);
-  async function getUser(id: string) {
+  async function fetchUserData(id: string) {
     const { data } = await Axios.get(`http://localhost:5000/users/${id}`);
-    console.log(data);
+    const { user } = data
+    setUser(user);
   }
 
   const navigate = useNavigate();
   return (
     <div className="container-dashboar">
       <div className="dashbord-info">
-        <h2>Username: example@gmail.com</h2>
-        <h2>Tokeni : 18750</h2>
+        <h2>Username: {user?.email}</h2>
+        <h2>Tokeni : {user?.tokens!}</h2>
       </div>
 
       <div className="buttons-dashboard">

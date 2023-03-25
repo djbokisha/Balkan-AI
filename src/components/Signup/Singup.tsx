@@ -4,6 +4,8 @@ import Axios from "axios";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
   username: string;
@@ -13,6 +15,8 @@ type FormData = {
 };
 
 function Signup() {
+  const { login } = useAuth()
+  const navigate = useNavigate();
   const schema: ZodType<FormData> = z
     .object({
       username: z.string().min(2).max(30),
@@ -34,14 +38,22 @@ function Signup() {
   });
 
   const submitData = (data: FormData) => {
-    console.log(data);
-
     Axios.post("http://localhost:5000/auth/signup", {
       ...data,
       isEmailConfirmed: false,
     })
       .then((res) => {
-        console.log(res);
+        login({
+          accessToken: res.data.accessToken,
+          accessTokenExpire: res.data.accessTokenExpire,
+          refreshToken: res.data.refreshToken,
+          tokenId: res.data.tokenId,
+          email: res.data.user.email,
+          userId: res.data.user.id,
+        });
+        if (res.status >= 200 && res.status <= 300) {
+          navigate("/profile");
+        }
       })
       .catch((err) => {
         console.log(err);

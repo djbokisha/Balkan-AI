@@ -14,7 +14,7 @@ export interface User {
 
 export const useUser = () => {
   const { user, setUser } = useContext(AuthContext);
-  const { setItem } = useLocalStorage();
+  const { setItem, getItem } = useLocalStorage();
 
   const addUser = (user: User): void => {
     setUser(user);
@@ -26,5 +26,9 @@ export const useUser = () => {
     setItem("user", "");
   };
 
-  return { user, addUser, removeUser };
+  const getUser = () => {
+    return JSON.parse(getItem("user")!)
+  }
+
+  return { user, addUser, removeUser, getUser };
 };
