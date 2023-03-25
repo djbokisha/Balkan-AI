@@ -22,39 +22,29 @@ function Google_Login_Oauth() {
             const details = jwt_decode(credentialResponse.credential!);
             // @ts-ignore
             const { email, email_verified } = details;
-            console.log(email, email_verified);
             if (email_verified) {
               Axios.post("http://localhost:5000/auth/loginGoogle", {
                 email: email,
               })
                 .then((res) => {
-                  console.log("logged in", res);
-                  const access_token = res.data.access_token;
-                  const refreshToken = res.data.refreshToken;
-
-                  console.log("access_token", access_token);
-                  console.log("refreshToken", refreshToken);
-
                   login({
-                    id: "",
-                    access_token: access_token,
-                    refreshToken: refreshToken,
-                    name: "",
-                    email: "",
+                    accessToken: res.data.accessToken,
+                    accessTokenExpire: res.data.accessTokenExpire,
+                    refreshToken: res.data.refreshToken,
+                    tokenId: res.data.tokenId,
+                    email: res.data.user.email,
+                    userId: res.data.user.id,
                   });
-
-                  setCookies("access_token", access_token, { httpOnly: true });
-                  // setCookies("refreshToken", refreshToken);
+                  if (res.status >= 200 && res.status <= 300) {
+                    navigate("/profile");
+                  }
                 })
-
                 .catch((err: any) => {
                   console.log(err);
                   // throw new Error(err.message);
                   console.error();
                 });
             }
-
-            navigate("/profile");
           }}
           onError={() => {
             console.log("Login Failed");
