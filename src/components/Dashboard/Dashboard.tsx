@@ -17,11 +17,11 @@ function Dashboard() {
     navigate("/login");
   };
   useEffect(() => {
-    getUser();
+    getUser("asd");
   }, []);
-  async function getUser() {
-    // const { data } = await Axios.get(`http://localhost:5000/users/${id}`);
-    // console.log(data);
+  async function getUser(id: string) {
+    const { data } = await Axios.get(`http://localhost:5000/users/${id}`);
+    console.log(data);
   }
 
   const navigate = useNavigate();

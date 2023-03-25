@@ -38,24 +38,23 @@ function Login_left_side() {
         "http://localhost:5000/auth/login",
         data
       );
-      console.log(loginResponse);
-
-      console.log(loginResponse.data.id);
-      console.log(loginResponse.config.data);
 
       login({
-        id: loginResponse.data.id,
-        access_token: loginResponse.data.access_token,
+        accessToken: loginResponse.data.accessToken,
+        accessTokenExpire: loginResponse.data.accessTokenExpire,
         refreshToken: loginResponse.data.refreshToken,
-        name: "",
-        email: "",
+        tokenId: loginResponse.data.tokenId,
+        email: loginResponse.data.user.email,
+        userId: loginResponse.data.user.id,
       });
+      if (loginResponse.status >= 200 && loginResponse.status <= 300) {
+        navigate("/profile");
+      }
+
       // jwtInterceptor()
     } catch (error: any) {
       console.log(error);
     }
-
-    navigate("/profile");
   };
 
   return (

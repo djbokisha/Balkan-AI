@@ -1,14 +1,15 @@
-import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { useLocalStorage } from './useLocalStorage';
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useLocalStorage } from "./useLocalStorage";
 
 export interface User {
-  id: string;
-  name: string;
+  accessToken?: string;
+  accessTokenExpire?: string;
+  refreshToken?: string;
+  tokenId?: string;
   email: string;
-  authToken?: string;
-  access_token: string;
-  refreshToken: string;
+  userId?: string;
+  password?: string;
 }
 
 export const useUser = () => {
@@ -17,12 +18,12 @@ export const useUser = () => {
 
   const addUser = (user: User): void => {
     setUser(user);
-    setItem('user', JSON.stringify(user));
+    setItem("user", JSON.stringify(user));
   };
 
   const removeUser = (): void => {
     setUser(null);
-    setItem('user', '');
+    setItem("user", "");
   };
 
   return { user, addUser, removeUser };
