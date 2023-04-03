@@ -11,7 +11,7 @@ const client = axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
+// @ts-ignore
 client.interceptors.response.use(undefined, (error) => {
   if (error.message === "Network Error" && !error.response) {
     toast.error("Network error - make sure API is running!");
