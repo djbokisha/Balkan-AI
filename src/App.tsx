@@ -13,10 +13,9 @@ import Admin_dashboard from "./components/Admin_dashboard/Admin_dashboard";
 
 import { AuthContext } from "./context/AuthContext";
 import { useAuth } from "./hooks/useAuth";
-
+import { useState } from "react";
 
 function App(): JSX.Element {
-
   const { user, login, logout } = useAuth();
 
   const router = createBrowserRouter([
@@ -66,6 +65,7 @@ function App(): JSX.Element {
         <title>Balkan AI</title>
         <link rel="canonical" href="#" />
       </Helmet>
+
       <AuthContext.Provider value={{ user, setUser(user) {} }}>
         <RouterProvider router={router} />
       </AuthContext.Provider>

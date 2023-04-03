@@ -1,21 +1,34 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
-
 import "./Chat_Bot.css";
-import { number } from "zod";
 import Axios from "axios";
+import { number, ZodNumber } from "zod";
+import { useUser } from "../../hooks/useUser";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+interface User {
+  userId: string;
+}
 
 function Chat_Bot() {
   const input = useRef<HTMLTextAreaElement | null>(null);
+  const { getItem } = useLocalStorage();
+
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user")!);
+    if (user !== null) {
+      setUser(user);
+    }
+  }, []);
 
   const configuration = new Configuration({
     apiKey: import.meta.env.VITE_REACT_APP_OPENAI_API_KEY!,
   });
-  console.log(import.meta.env.VITE_REACT_APP_OPENAI_API_KEY);
+  // console.log(import.meta.env.VITE_REACT_APP_OPENAI_API_KEY);
 
   const openai = new OpenAIApi(configuration);
 
-  // const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [totalTokens, setTotalTokens] = useState("");
@@ -23,37 +36,30 @@ function Chat_Bot() {
   const handleClick = async () => {
     console.log(input.current?.value);
     const question = input.current?.value;
+    // @ts-ignore
+    const id = user.userId;
+    console.log("UserID", id);
+    setLoading(true);
 
     {
-      Axios.post("http://localhost:5000/open-ai/checkModeration", null, {
-        params: {
-          question: question,
-        },
+      Axios.post("http://localhost:5000/open-ai/chat", {
+        query: question,
+        userId: id,
       })
         .then((res) => {
           console.log(res);
+          setResult(res.data.choices[0].text!);
+          setLoading(false);
+
         })
         .catch((err) => {
           console.log(err);
           console.error();
+          setLoading(false);
+
         });
     }
 
-    setLoading(true);
-    try {
-      const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: input.current?.value,
-        temperature: 0.5,
-        max_tokens: 250,
-      });
-      setResult(response.data.choices[0].text!);
-      // setTotalTokens(response.data.usage?.total_tokens!)
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-    setLoading(false);
   };
 
   return (

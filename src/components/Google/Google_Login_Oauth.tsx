@@ -1,16 +1,16 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { GoogleLogin, googleLogout } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import Axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { useAuth } from "../../hooks/useAuth";
+import { useState } from "react";
 
 function Google_Login_Oauth() {
   const { login } = useAuth();
 
   const navigate = useNavigate();
-  const [cookies, setCookies, removeCookie] = useCookies();
+  const [userId, setUserId] = useState<string | null>(null);
 
   const clientId = import.meta.env.VITE_CLIENT_ID_GOOGLE;
 
@@ -35,6 +35,21 @@ function Google_Login_Oauth() {
                     email: res.data.user.email,
                     userId: res.data.user.id,
                   });
+
+                  const userId = res.data.user.id;
+
+                  console.log(userId);
+
+                  setUserId(userId);
+                  console.log(userId);
+
+                  const getCopy = (userType: string): string => {
+                    if (userType.toLowerCase() === "admin") {
+                      return userId
+                    }
+                    return "Welcome user!";
+                  };
+
                   if (res.status >= 200 && res.status <= 300) {
                     navigate("/profile");
                   }
@@ -53,8 +68,13 @@ function Google_Login_Oauth() {
           shape="circle"
         />
       </GoogleOAuthProvider>
+      
     </div>
   );
 }
 
 export default Google_Login_Oauth;
+
+
+
+

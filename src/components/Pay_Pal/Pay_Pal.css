@@ -1,9 +1,12 @@
-.paypal{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.paypal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  background-image: linear-gradient(to right, rgb(52, 77, 80), rgb(0, 0, 0));
 }
 
-.index{
-    z-index: 0;
+.index {
+  z-index: 0;
 }

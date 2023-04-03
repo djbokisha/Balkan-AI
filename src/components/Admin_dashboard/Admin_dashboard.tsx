@@ -23,9 +23,6 @@ function Admin_dashboard() {
     }
   };
 
-
-
-
   async function getUsers() {
     const { data } = await Axios.get("http://localhost:5000/users");
 
@@ -34,18 +31,63 @@ function Admin_dashboard() {
     setfilterData(data);
   }
 
+  // function addTokens(user: Partial<User>) {
+  //   Axios.patch("http://localhost:5000/tokens/addTokens", null, {
+  //     params: {
+  //       email: user.email!,
+  //     },
+  //   });
+  // }
 
-
-  function addTokens (user : Partial<User>){
-
-    Axios.patch("http://localhost:5000/tokens/addTokens", null, {
-      params: {
-        email: user.email!,
-      },
+  function removeAllTokens(user: User) {
+    Axios.patch(`http://localhost:5000/tokens/removeTokens`, null, {
+      params: { email: user.email },
     })
+      .then((res) => {
+        console.log(res);
 
+        const updatedUsers = appData.map((u) =>
+          u.id === user.id ? { ...user, tokens: (user.tokens! = 0) } : u
+        );
+        setAppData(updatedUsers);
+        setfilterData(updatedUsers);
+        console.log(updatedUsers);
+      })
+      .catch((error) => console.log(error));
   }
 
+  function removeTokens(user: User) {
+    Axios.patch(`http://localhost:5000/tokens/removeTokens`, null, {
+      params: { email: user.email },
+    })
+      .then((res) => {
+        console.log(res);
+
+        const updatedUsers = appData.map((u) =>
+          u.id === user.id ? { ...user, tokens: user.tokens! - 20000 } : u
+        );
+        setAppData(updatedUsers);
+        setfilterData(updatedUsers);
+        console.log(updatedUsers);
+      })
+      .catch((error) => console.log(error));
+  }
+
+  function addTokens(user: User) {
+    Axios.patch(`http://localhost:5000/tokens/addTokens`, null, {
+      params: { email: user.email },
+    })
+      .then((res) => {
+        console.log(res);
+
+        const updatedUsers = appData.map((u) =>
+          u.id === user.id ? { ...user, tokens: user.tokens! + 20000 } : u
+        );
+        setAppData(updatedUsers);
+        setfilterData(updatedUsers);
+      })
+      .catch((error) => console.log(error));
+  }
   const tableData = () => {
     return filterdata.map((user, index) => {
       return (
@@ -57,10 +99,14 @@ function Admin_dashboard() {
             <td> {user.tokens!} </td>
             <td> {user.payments!} </td>
             <td>
-              <button>Remove</button> / <button onClick={() => addTokens(user)}>Add Tokens</button>
-
-
-
+              <button onClick={() => addTokens(user)}>Add 20K Tokens</button>/
+              <button onClick={() => removeTokens(user)}>
+                Remove 20K Tokens
+              </button>{" "}
+              /
+              <button onClick={() => removeAllTokens(user)}>
+                Remove All Tokens
+              </button>
             </td>
           </tr>
         </tbody>

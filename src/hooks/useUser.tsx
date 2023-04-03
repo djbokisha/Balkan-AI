@@ -15,10 +15,14 @@ export interface User {
 export const useUser = () => {
   const { user, setUser } = useContext(AuthContext);
   const { setItem, getItem } = useLocalStorage();
+  // const { userId, setUserId } = useContext(AuthContext);
+
+  
 
   const addUser = (user: User): void => {
     setUser(user);
     setItem("user", JSON.stringify(user));
+    console.log("user", user)
   };
 
   const removeUser = (): void => {
@@ -30,5 +34,11 @@ export const useUser = () => {
     return JSON.parse(getItem("user")!)
   }
 
-  return { user, addUser, removeUser, getUser };
+  // const sendId = () => {
+  //   setUserId(userId)
+
+  // }
+
+
+  return { user, addUser, removeUser, getUser,  };
 };
