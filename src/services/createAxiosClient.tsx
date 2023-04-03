@@ -1,7 +1,9 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const client = axios.interceptors.request.use(
+const client = axios.create();
+
+client.interceptors.request.use(
   (config) => {
     const token = window.localStorage.getItem("jwt");
     if (token) config.headers.Authorization = `Bearer ${token}`;
@@ -11,8 +13,8 @@ const client = axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-// @ts-ignore
-client.interceptors.response.use(undefined, (error) => {
+
+client.interceptors.response.use(undefined, (error: any) => {
   if (error.message === "Network Error" && !error.response) {
     toast.error("Network error - make sure API is running!");
   }
@@ -46,4 +48,4 @@ client.interceptors.response.use(undefined, (error) => {
   throw error.response;
 });
 
-export default client
+export default client;
