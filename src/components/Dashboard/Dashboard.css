@@ -74,6 +74,7 @@
   width: 50%;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 15px;
 }
 .pp {
   border: 5px solid grey;

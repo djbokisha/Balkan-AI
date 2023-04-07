@@ -21,7 +21,7 @@ const Video = ({ resultRef }: any) => {
   return (
     <div className="hero">
       <Suspense fallback={<img src={videoPreview} className="video-preview" />}>
-        <video autoPlay loop muted playsInline id="video">
+        <video autoPlay loop muted playsInline id="video" controls={false} >
           <source src={viewportWidth > 768 ? video : video} type="video/mp4" />
         </video>
       </Suspense>

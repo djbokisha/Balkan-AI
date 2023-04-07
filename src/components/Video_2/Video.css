@@ -34,14 +34,14 @@
   line-height: normal;
   font-family: sans-serif;
 }
-.scrolling-element-inside-video2 p{
+.scrolling-element-inside-video2 p {
   font-size: 16px;
   line-height: 1.8em;
   font-family: sans-serif;
   margin-top: 3rem;
 }
 .btn-video2 {
-  background-color: #CAD2C5;
+  background-color: #cad2c5;
   cursor: pointer;
   border-radius: 10px;
   border: 1px solid white;
@@ -50,21 +50,11 @@
   margin-top: 1rem;
 }
 
-video::-webkit-media-controls {
-  display: none;
-}
-video{
-  pointer-events: none;
-}
-
 @media only screen and (max-width: 768px) {
-
-  .left-video2-side{
+  .left-video2-side {
     width: 100%;
   }
-  .scrolling-area-video2{
+  .scrolling-area-video2 {
     width: 65%;
   }
-
-
 }
