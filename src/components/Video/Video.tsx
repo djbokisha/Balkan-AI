@@ -2,17 +2,13 @@ import React, { useEffect, useRef, useState, Suspense } from "react";
 import "./Video.css";
 import video from "../../assets/video.mp4";
 import circle2 from "../../assets/circle2.svg";
-import videoPreview from "../../assets/image2.png";
+import videoPreview from "../../assets/videoPreview.png";
 
 const Video = ({ resultRef }: any) => {
-  const viewportWidth = window.innerWidth;
 
-  // let heroVideoSrc = heroVideoEl.dataset.srcMobile;
-  // let viewportWidth = window.innerWidth;
-  // if (viewportWidth >= DESKTOP_BREAKPOINT) {
-  //   heroVideoSrc = heroVideoEl.dataset.srcDesktop;
-  // }
-  // heroVideoEl.src = heroVideoSrc;
+  const [loaded, setLoaded] = useState(false);
+
+  const viewportWidth = window.innerWidth;
 
   const scroll = (e: any) => {
     resultRef.current.scrollIntoView({ behavior: "smooth" });
@@ -20,8 +16,25 @@ const Video = ({ resultRef }: any) => {
 
   return (
     <div className="hero">
-      <Suspense fallback={<img src={videoPreview} className="video-preview" />}>
-        <video autoPlay loop muted playsInline id="video" controls={false} >
+      {!loaded && (
+        <img
+          src={videoPreview}
+          className="video-preview"
+          width={500}
+          height={500}
+        />
+      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          id="video"
+          controls={false} 
+          onLoadedData={() => setLoaded(true)}
+          style={{ display: loaded ? "inline" : "none" }}
+        >
           <source src={viewportWidth > 768 ? video : video} type="video/mp4" />
         </video>
       </Suspense>
