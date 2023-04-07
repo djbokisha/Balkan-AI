@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, Suspense } from "react";
 import "./Video.css";
 import video from "../../assets/video.mp4";
-import circle from "../../assets/circle.svg";
+import circle2 from "../../assets/circle.svg";
 import videoPreview from "../../assets/image2.png";
 
 const Video = ({ resultRef }: any) => {
@@ -31,7 +31,7 @@ const Video = ({ resultRef }: any) => {
         <p>- AI sistem veštačke inteligencije na području Balkana -</p>
         <div className="btn-group">
           <button className="btn" onClick={(e) => scroll(e)}>
-            <img src={circle} alt="circle" />
+            <img src={circle2} alt="circle" />
           </button>
         </div>
       </div>
