@@ -50,6 +50,24 @@
   margin-top: 1rem;
 }
 
+
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+video::-webkit-media-controls-enclosure {
+  display:none !important;
+}
+
+video::-webkit-media-controls {
+  display:none !important;
+}
+
+video::-webkit-playsinline {
+  display:none !important;
+}
+
 @media only screen and (max-width: 768px) {
   .left-video2-side {
     width: 100%;
