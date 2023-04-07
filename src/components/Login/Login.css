@@ -3,3 +3,13 @@
     height: 100vh;
     display: flex;
 }
+
+@media screen and (max-width: 940px) {
+
+   .container-login{
+    flex-direction: column;
+   }
+  
+    
+  
+  }

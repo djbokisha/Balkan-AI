@@ -49,3 +49,14 @@
   color: red;
   font-size: 10px;
 }
+@media screen and (max-width: 940px) {
+
+  .container-signup{
+    flex-direction: column;
+  }
+ 
+   .signup{
+    height: 80%;
+   }
+ 
+ }

@@ -50,10 +50,17 @@
   margin-top: 1rem;
 }
 
+video::-webkit-media-controls {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {
 
   .left-video2-side{
     width: 100%;
+  }
+  .scrolling-area-video2{
+    width: 65%;
   }
 
 

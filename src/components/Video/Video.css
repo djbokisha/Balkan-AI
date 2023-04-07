@@ -60,6 +60,10 @@
   width: 35%;
 }
 
+video::-webkit-media-controls {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {
   .hero-text h1 {
     font-size: 40px;

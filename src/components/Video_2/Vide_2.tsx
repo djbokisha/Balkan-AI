@@ -7,7 +7,7 @@ function Vide_2() {
 
   return (
     <div className="hero">
-      <video autoPlay loop muted id="video">
+      <video autoPlay loop muted id="video"  >
         <source src={video_2} type="video/mp4" />
       </video>
 

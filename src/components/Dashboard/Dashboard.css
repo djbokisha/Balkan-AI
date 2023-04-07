@@ -90,3 +90,28 @@
   border: 0;
   cursor: pointer;
 }
+
+
+@media screen and (max-width: 940px) {
+
+  .buttons-dashboard{
+    width: 85%;
+  }
+  .balkanai-info{
+  width: 85%;
+  }
+
+  .uplatnica{
+    width: 100%;
+  }
+.images-dashboard{
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+}
+.dashbord-info{
+  width: 85%;
+}
+  
+
+}

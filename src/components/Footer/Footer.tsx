@@ -14,16 +14,6 @@ function Footer() {
     <div className="container-footer">
       <h3>© {date} by BALKAN AI</h3>
       <div className="icons">
-        <a href="#" target="_blank">
-          <img src={linkedin} alt="linkedin" />
-        </a>
-        <a href="https://www.facebook.com/" target="_blank">
-          <img src={facebook} alt="facebook" />
-        </a>
-        <a href="#" target="_blank">
-          <img src={twitter} alt="twitter" />
-        </a>
-
         <a href="https://www.instagram.com/balkan_ai" target="_blank">
           <img src={instagram} alt="instagram" />
         </a>

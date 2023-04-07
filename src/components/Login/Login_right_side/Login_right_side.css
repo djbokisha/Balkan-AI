@@ -7,3 +7,12 @@
   background-color: black;
   background-size: contain;
 }
+
+
+@media screen and (max-width: 940px) {
+
+  .right-login-side{
+    width: 100vw;
+  }
+    
+}

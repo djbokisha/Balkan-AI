@@ -101,3 +101,12 @@
 .signin{
   width: 80%;
 }
+
+@media screen and (max-width: 940px) {
+
+.left-login-side{
+  width: 100vw;
+}
+  
+
+}
