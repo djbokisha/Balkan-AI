@@ -53,6 +53,9 @@
 video::-webkit-media-controls {
   display: none;
 }
+video{
+  pointer-events: none;
+}
 
 @media only screen and (max-width: 768px) {
 
