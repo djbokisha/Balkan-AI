@@ -84,7 +84,7 @@ function Login_left_side() {
             <Google_Login_Oauth />
           </div>
         </div>
-        <div>
+        <div className="signin">
           <form onSubmit={handleSubmit(submitData)}>
             <div className="email-login">
               <label htmlFor="">Email address</label>

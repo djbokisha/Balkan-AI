@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import "./Change_password.css";
 
 import Axios from "axios";
@@ -6,6 +6,7 @@ import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 type FormData = {
   oldPassword: string;
@@ -15,6 +16,15 @@ type FormData = {
 
 function Change_password() {
   const navigate = useNavigate();
+  const { getItem } = useLocalStorage();
+
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user")!);
+    if (user !== null) {
+      setUser(user);
+    }
+  }, []);
 
   const schema: ZodType<FormData> = z
     .object({
@@ -35,9 +45,18 @@ function Change_password() {
   });
 
   const submitData = (data: FormData) => {
-    Axios.post("http://localhost:5000/auth/signup", {
-      ...data,
-    })
+    // @ts-ignore
+    const id = user.userId;
+    console.log("UserID", id);
+    // @ts-ignore
+    const email = user.email;
+    console.log("Email", email);
+    const payload = {
+      oldPassword: data.oldPassword.toString(),
+      password: data.newPassword.toString(),
+      email: email.toString(),
+    };
+    Axios.patch("http://localhost:5000/users/updatePassword", payload)
       .then((res) => {
         console.log(res);
         if (res.status >= 200 && res.status <= 300) {
@@ -47,7 +66,7 @@ function Change_password() {
       .catch((err) => {
         console.log(err);
       });
-      console.log(data)
+    console.log(data);
   };
 
   return (
@@ -62,11 +81,9 @@ function Change_password() {
                 placeholder="Old Password"
                 {...register("oldPassword")}
               />
-                {errors.oldPassword && (
-                  <span className="error-span">
-                    {errors.oldPassword.message}
-                  </span>
-                )}
+              {errors.oldPassword && (
+                <span className="error-span">{errors.oldPassword.message}</span>
+              )}
             </div>
             <div className="password-change">
               <label htmlFor="">New Password</label>
@@ -85,11 +102,11 @@ function Change_password() {
                 autoComplete="on"
                 {...register("repeatNewPassword")}
               />
-                 {errors.repeatNewPassword && (
-                  <span className="error-span">
-                    {errors.repeatNewPassword.message}
-                  </span>
-                )}
+              {errors.repeatNewPassword && (
+                <span className="error-span">
+                  {errors.repeatNewPassword.message}
+                </span>
+              )}
             </div>
             <div className="change-me">
               <button type="submit" className="btn-login-change">

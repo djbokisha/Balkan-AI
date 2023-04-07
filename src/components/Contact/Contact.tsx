@@ -3,6 +3,7 @@ import "./Contact.css";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Axios from "axios";
 
 type FormData = {
   name: string;
@@ -12,24 +13,6 @@ type FormData = {
 };
 
 function Contact() {
-  const nameRef = useRef<HTMLInputElement>(null);
-  const surnmeRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const messageRef = useRef<HTMLTextAreaElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const submitHandler = (e: FormEvent) => {
-    e.preventDefault();
-
-    const name = nameRef.current!.value;
-    const surname = surnmeRef.current!.value;
-    const email = emailRef.current!.value;
-    const message = messageRef.current!.value;
-
-    console.log(name, surname, email, message);
-    formRef.current?.reset();
-  };
-
   const schema: ZodType<FormData> = z.object({
     name: z.string().min(2).max(30),
     surname: z.string().min(2).max(30),
@@ -45,6 +28,23 @@ function Contact() {
 
   const submitData = (data: FormData) => {
     console.log(data);
+
+    const payload = {
+      recipient: "djbokisha@gmail.com",
+      sender: data.email,
+      subject: "subject",
+      message: data.message,
+    };
+
+    Axios.post("http://localhost:5000/auth/email", payload)
+      .then((res) => {
+        console.log(res);
+        if (res.status >= 200 && res.status <= 300) {
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

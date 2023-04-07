@@ -158,6 +158,9 @@ textarea:focus {
   .btn-send {
     width: 100%;
   }
+  .btn-send:hover{
+    width: 100%;
+  }
   .right-contact-side {
     width: 80%;
   }

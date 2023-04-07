@@ -34,6 +34,7 @@ function Pay_Pal() {
             const email = details.payer.email_address;
             const payments = details.create_time;
             console.log(payments);
+            console.log(email);
 
             if (status === "COMPLETED") {
               Axios.patch("http://localhost:5000/tokens/addTokens", null, {
@@ -42,7 +43,7 @@ function Pay_Pal() {
                 },
               })
                 .then((res) => {
-                  console.log(res);
+                  console.log("aa", res);
                 })
                 .catch((err) => {
                   console.log(err);
@@ -50,7 +51,7 @@ function Pay_Pal() {
                 });
             }
             Axios.post("http://localhost:5000/users", {
-              payments: [payments],
+              payments: payments,
             })
               .then((res) => {
                 console.log(res);

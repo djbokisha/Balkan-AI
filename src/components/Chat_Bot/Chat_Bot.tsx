@@ -21,14 +21,6 @@ function Chat_Bot() {
       setUser(user);
     }
   }, []);
-
-  const configuration = new Configuration({
-    apiKey: import.meta.env.VITE_REACT_APP_OPENAI_API_KEY!,
-  });
-  // console.log(import.meta.env.VITE_REACT_APP_OPENAI_API_KEY);
-
-  const openai = new OpenAIApi(configuration);
-
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [totalTokens, setTotalTokens] = useState("");

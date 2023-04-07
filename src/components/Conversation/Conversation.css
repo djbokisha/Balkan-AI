@@ -19,16 +19,21 @@
 .input {
   display: flex;
   width: 70%;
+
 }
 
 .input input {
   font: italic normal normal 16px/1.4em helvetica-w01-roman, helvetica-w02-roman,
     helvetica-lt-w10-roman, sans-serif;
-  background-color: rgb(255, 255, 255);
+  background-color: #CBD2C4;
   height: 50px;
   width: 360%;
   border-radius: 10px;
   border: 1px solid black;
+  padding-left: 15px;
+}
+.input input:focus{
+  outline: none;
 }
 
 .content {
