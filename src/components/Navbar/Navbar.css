@@ -12,8 +12,9 @@
   display: flex;
   align-items: center;
 }
-.logo h1{
-  font-family: helvetica-w01-bold,helvetica-w02-bold,helvetica-lt-w10-bold,sans-serif;
+.logo h1 {
+  font-family: helvetica-w01-bold, helvetica-w02-bold, helvetica-lt-w10-bold,
+    sans-serif;
   font-size: 24px;
   font-weight: normal;
 }
@@ -21,7 +22,6 @@
   padding-right: 1rem;
   height: 60px;
   cursor: pointer;
-  
 }
 
 .navbar .container {
@@ -47,6 +47,7 @@
   width: 120px;
   height: 40px;
   margin-left: 1rem;
+  color: black;
 }
 
 .hamburger {
