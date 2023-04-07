@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, Suspense } from "react";
 import "./Video.css";
 import video from "../../assets/video.mp4";
-import circle2 from "../../assets/circle.svg";
+import circle2 from "../../assets/circle2.svg";
 import videoPreview from "../../assets/image2.png";
 
 const Video = ({ resultRef }: any) => {

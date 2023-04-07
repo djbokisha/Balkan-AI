@@ -55,6 +55,7 @@
 
 .btn img {
   width: 35%;
+  rotate: 180deg;
 }
 
 @media only screen and (max-width: 768px) {
