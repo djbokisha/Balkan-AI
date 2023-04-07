@@ -19,20 +19,19 @@
 .input {
   display: flex;
   width: 70%;
-
 }
 
 .input input {
   font: italic normal normal 16px/1.4em helvetica-w01-roman, helvetica-w02-roman,
     helvetica-lt-w10-roman, sans-serif;
-  background-color: #CBD2C4;
+  background-color: #cbd2c4;
   height: 50px;
   width: 360%;
   border-radius: 10px;
   border: 1px solid black;
   padding-left: 15px;
 }
-.input input:focus{
+.input input:focus {
   outline: none;
 }
 
@@ -49,11 +48,12 @@
   color: #cad2c5;
 }
 
-.content button {
+.btn-conversation {
   cursor: pointer;
   border-radius: 10px;
   border: 1px solid black;
-  width: 300px;
+  width: 60%;
   height: 55px;
   margin-left: 2rem;
+  color: black;
 }

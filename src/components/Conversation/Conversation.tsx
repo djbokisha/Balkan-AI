@@ -26,7 +26,7 @@ function buttonHandler() {
               placeholder="Vase pitanje/zahtev"
               ref={inputRef}
             />
-            <button type="button" onClick={() => buttonHandler()}>
+            <button  type="button" onClick={() => buttonHandler()} className="btn-conversation">
               Posalji
             </button>
           </div>

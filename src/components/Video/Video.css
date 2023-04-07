@@ -61,26 +61,37 @@
 video {
   max-width: 100%;
   height: auto;
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  padding-right: 0;
+  object-fit: fill;
 }
 
 video::-webkit-media-controls-enclosure {
-  display:none !important;
+  display: none !important;
 }
 
 video::-webkit-media-controls {
-  display:none !important;
+  display: none !important;
 }
 
 video::-webkit-playsinline {
-  display:none !important;
+  display: none !important;
 }
 
 video::-webkit-media-controls-panel {
   display: none !important;
-  opacity: 1 !important;}
-  video::-webkit-media-controls-start-playback-button {
-      display: none;
-  }
+  opacity: 1 !important;
+}
+video::-webkit-media-controls-start-playback-button {
+  display: none;
+}
 
 @media only screen and (max-width: 768px) {
   .hero-text h1 {
