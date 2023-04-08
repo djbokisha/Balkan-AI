@@ -15,7 +15,7 @@ type FormData = {
 };
 
 function Signup() {
-  const { login } = useAuth()
+  const { login } = useAuth();
   const navigate = useNavigate();
   const schema: ZodType<FormData> = z
     .object({
@@ -38,7 +38,7 @@ function Signup() {
   });
 
   const submitData = (data: FormData) => {
-    Axios.post("http://localhost:5000/auth/signup", {
+    Axios.post(`${import.meta.env.VITE_URL}/auth/signup`, {
       ...data,
       isEmailConfirmed: false,
     })

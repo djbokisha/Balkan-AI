@@ -56,7 +56,7 @@ function Change_password() {
       password: data.newPassword.toString(),
       email: email.toString(),
     };
-    Axios.patch("http://localhost:5000/users/updatePassword", payload)
+    Axios.patch(`${import.meta.env.VITE_URL}/users/updatePassword`, payload)
       .then((res) => {
         console.log(res);
         if (res.status >= 200 && res.status <= 300) {

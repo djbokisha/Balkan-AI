@@ -36,7 +36,7 @@ function Contact() {
       message: data.message,
     };
 
-    Axios.post("http://localhost:5000/auth/email", payload)
+    Axios.post(`${import.meta.env.VITE_URL}/auth/email`, payload)
       .then((res) => {
         console.log(res);
         if (res.status >= 200 && res.status <= 300) {

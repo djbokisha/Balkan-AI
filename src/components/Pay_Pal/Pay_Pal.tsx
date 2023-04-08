@@ -37,11 +37,15 @@ function Pay_Pal() {
             console.log(email);
 
             if (status === "COMPLETED") {
-              Axios.patch("http://localhost:5000/tokens/addTokens", null, {
-                params: {
-                  email: email,
-                },
-              })
+              Axios.patch(
+                `${import.meta.env.VITE_URL}/tokens/addTokens`,
+                null,
+                {
+                  params: {
+                    email: email,
+                  },
+                }
+              )
                 .then((res) => {
                   console.log("aa", res);
                 })
@@ -50,7 +54,7 @@ function Pay_Pal() {
                   console.error();
                 });
             }
-            Axios.post("http://localhost:5000/users", {
+            Axios.post(`${import.meta.env.VITE_URL}/users`, {
               payments: payments,
             })
               .then((res) => {

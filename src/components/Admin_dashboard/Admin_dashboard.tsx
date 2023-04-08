@@ -24,23 +24,15 @@ function Admin_dashboard() {
   };
 
   async function getUsers() {
-    const { data } = await Axios.get("http://localhost:5000/users");
+    const { data } = await Axios.get(`${import.meta.env.VITE_URL}/users`);
 
     console.log(data);
     setAppData(data);
     setfilterData(data);
   }
 
-  // function addTokens(user: Partial<User>) {
-  //   Axios.patch("http://localhost:5000/tokens/addTokens", null, {
-  //     params: {
-  //       email: user.email!,
-  //     },
-  //   });
-  // }
-
   function removeAllTokens(user: User) {
-    Axios.patch(`http://localhost:5000/tokens/removeTokens`, null, {
+    Axios.patch(`${import.meta.env.VITE_URL}/tokens/removeTokens`, null, {
       params: { email: user.email },
     })
       .then((res) => {
@@ -57,7 +49,7 @@ function Admin_dashboard() {
   }
 
   function removeTokens(user: User) {
-    Axios.patch(`http://localhost:5000/tokens/removeTokens`, null, {
+    Axios.patch(`${import.meta.env.VITE_URL}/tokens/removeTokens`, null, {
       params: { email: user.email },
     })
       .then((res) => {
@@ -74,7 +66,7 @@ function Admin_dashboard() {
   }
 
   function addTokens(user: User) {
-    Axios.patch(`http://localhost:5000/tokens/addTokens`, null, {
+    Axios.patch(`${import.meta.env.VITE_URL}/tokens/addTokens`, null, {
       params: { email: user.email },
     })
       .then((res) => {

@@ -34,7 +34,7 @@ function Chat_Bot() {
     setLoading(true);
 
     {
-      Axios.post("http://localhost:5000/open-ai/chat", {
+      Axios.post(`${import.meta.env.VITE_URL}/open-ai/chat`, {
         query: question,
         userId: id,
       })
@@ -42,16 +42,13 @@ function Chat_Bot() {
           console.log(res);
           setResult(res.data.choices[0].text!);
           setLoading(false);
-
         })
         .catch((err) => {
           console.log(err);
           console.error();
           setLoading(false);
-
         });
     }
-
   };
 
   return (

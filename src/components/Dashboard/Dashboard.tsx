@@ -23,7 +23,7 @@ function Dashboard() {
     fetchUserData(getUser()?.userId!);
   }, []);
   async function fetchUserData(id: string) {
-    const { data } = await Axios.get(`http://localhost:5000/users/${id}`);
+    const { data } = await Axios.get(`${import.meta.env.VITE_URL}/users/${id}`);
     const { user } = data;
     setUser(user);
   }

@@ -23,7 +23,7 @@ function Google_Login_Oauth() {
             // @ts-ignore
             const { email, email_verified } = details;
             if (email_verified) {
-              Axios.post("http://localhost:5000/auth/loginGoogle", {
+              Axios.post(` ${import.meta.env.VITE_URL}/auth/loginGoogle`, {
                 email: email,
               })
                 .then((res) => {
@@ -45,7 +45,7 @@ function Google_Login_Oauth() {
 
                   const getCopy = (userType: string): string => {
                     if (userType.toLowerCase() === "admin") {
-                      return userId
+                      return userId;
                     }
                     return "Welcome user!";
                   };
@@ -66,17 +66,10 @@ function Google_Login_Oauth() {
           }}
           type="icon"
           shape="circle"
-          
-
-          />
+        />
       </GoogleOAuthProvider>
-      
     </div>
   );
 }
 
 export default Google_Login_Oauth;
-
-
-
-
