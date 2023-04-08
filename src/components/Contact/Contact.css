@@ -46,7 +46,6 @@
   background-color: rgb(202, 210, 197);
   border-radius: 0.8rem;
   margin-top: 3rem;
-
 }
 .container-form form {
   margin: 50px;
@@ -158,7 +157,7 @@ textarea:focus {
   .btn-send {
     width: 100%;
   }
-  .btn-send:hover{
+  .btn-send:hover {
     width: 100%;
   }
   .right-contact-side {
@@ -166,8 +165,8 @@ textarea:focus {
   }
   .container-form {
     width: 100%;
-  
-  
   }
-
+  .text-area-contact h1{
+    text-align: center;
+  }
 }
