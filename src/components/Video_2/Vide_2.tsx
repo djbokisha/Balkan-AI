@@ -32,7 +32,7 @@ function Vide_2() {
         <button
           className="btn-video2 btn-hover"
           type="button"
-          onClick={() => navigate("/chat")}
+          onClick={() => navigate("/login")}
         >
           ISPROBAJ
         </button>

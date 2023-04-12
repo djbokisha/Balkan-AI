@@ -16,6 +16,11 @@
   border-radius: 0.8rem;
 }
 
+.signup p{
+  font-size: 1rem;
+  text-align: center;
+}
+
 .name-singup input,
 .surname-singup input,
 .email-singup input,
@@ -56,7 +61,7 @@
   }
  
    .signup{
-    height: 80%;
+    height: 90%;
    }
  
  }

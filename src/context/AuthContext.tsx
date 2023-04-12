@@ -10,3 +10,8 @@ export const AuthContext = createContext<AuthContext>({
   user: null,
   setUser: () => {},
 });
+
+export const InputContex = createContext({
+  input: null,
+  setInput: () => {},
+});

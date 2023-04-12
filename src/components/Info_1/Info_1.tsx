@@ -35,7 +35,7 @@ function Info_1() {
 
           <button
             className="btn-info btn-hover"
-            onClick={() => navigate("/chat")}
+            onClick={() => navigate("/login")}
             type="button"
           >
             ISPROBAJ

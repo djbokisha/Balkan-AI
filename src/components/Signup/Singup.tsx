@@ -1,11 +1,10 @@
-import { FormEvent, useRef } from "react";
-import "./Signup.css";
-import Axios from "axios";
-import { z, ZodType } from "zod";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "../../hooks/useAuth";
+import Axios from "axios";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { ZodType, z } from "zod";
+import { useAuth } from "../../hooks/useAuth";
+import "./Signup.css";
 
 type FormData = {
   username: string;
@@ -64,7 +63,7 @@ function Signup() {
     <div className="container-signup">
       <div className="left-login-side">
         <div className="signup">
-          <p>Sign up</p>
+          <p>Registruj se isprobaj besplatno naš AI Chatbot</p>
           <div>
             <form onSubmit={handleSubmit(submitData)}>
               <div className="name-singup">

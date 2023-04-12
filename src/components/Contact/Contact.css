@@ -166,7 +166,8 @@ textarea:focus {
   .container-form {
     width: 100%;
   }
-  .text-area-contact h1{
+  .text-area-contact h1 {
     text-align: center;
+    font-size: 2.8em;
   }
 }

@@ -1,13 +1,13 @@
-import { useState, useEffect, useContext } from "react";
-import "./Login_left_side.css";
-import Google_Login_Oauth from "../../Google/Google_Login_Oauth";
-import { useNavigate } from "react-router-dom";
-import Axios from "axios";
-import { z, ZodType } from "zod";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { ZodType, z } from "zod";
 import { useAuth } from "../../../hooks/useAuth";
-import axios from "../../../services/createAxiosClient";
+import Google_Login_Oauth from "../../Google/Google_Login_Oauth";
+import "./Login_left_side.css";
+
 type FormData = {
   email: string;
   password: string;
@@ -47,11 +47,11 @@ function Login_left_side() {
   const submitData = async (data: FormData) => {
     try {
       const loginResponse = await Axios.post(
-       ` ${import.meta.env.VITE_URL}/auth/login`,
+        ` ${import.meta.env.VITE_URL}/auth/login`,
         data
       );
 
-      console.log(loginResponse)
+      console.log(loginResponse);
 
       login({
         accessToken: loginResponse.data.accessToken,
@@ -61,8 +61,6 @@ function Login_left_side() {
         email: loginResponse.data.user.email,
         userId: loginResponse.data.user.id,
       });
-
-      // setValue(loginResponse.data.user.id)
 
       setUserId(loginResponse.data.user.id);
 
@@ -76,12 +74,20 @@ function Login_left_side() {
     }
   };
 
+  function GoogleFunction() {
+    return <Google_Login_Oauth />;
+    console.log("aaaa");
+  }
+
   return (
     <div className="left-login-side">
       <div className="login">
         <div className="position">
           <div className="google">
-            <Google_Login_Oauth />
+            {GoogleFunction()}
+            {/* <button type="button" onClick={() => GoogleFunction}>
+              <img src={googleIcon} alt="googleIcon" />
+            </button> */}
           </div>
         </div>
         <div className="signin">

@@ -1,35 +1,51 @@
-import React, { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import "./Conversation.css";
 
 function Conversation() {
   const navigate = useNavigate();
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [inputValue, setInputValue] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { getItem } = useLocalStorage();
 
-function buttonHandler() {
+  useEffect(() => {
+    const user = getItem("user");
+    setIsLoggedIn(user ? true : false);
+  }, [getItem]);
 
-    const input = inputRef.current?.value;
-
-    console.log(input);
-
-    navigate("/chat");
+  function buttonHandler() {
+    if (isLoggedIn) {
+      navigate("/chat ", { state: { data: inputValue } });
+    } else if (!isLoggedIn) {
+      navigate("/login", { state: { data: inputValue } });
+    }
   }
+
+  const onChangeHandler = (event: any) => {
+    setInputValue(event.target.value);
+  };
+
   return (
     <div className="conversation">
       <h1>BALKAN AI</h1>
-
       <div className="content">
         <p>Započnite konverzaciju:</p>
-          <div className="input">
-            <input
-              type="email"
-              placeholder="Vase pitanje/zahtev"
-              ref={inputRef}
-            />
-            <button  type="button" onClick={() => buttonHandler()} className="btn-conversation">
-              Posalji
-            </button>
-          </div>
+        <div className="input">
+          <input
+            type="text"
+            name="name"
+            onChange={onChangeHandler}
+            value={inputValue}
+          />
+          <button
+            type="button"
+            onClick={() => buttonHandler()}
+            className="btn-conversation"
+          >
+            Posalji
+          </button>
+        </div>
       </div>
     </div>
   );
