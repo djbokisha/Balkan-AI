@@ -94,7 +94,7 @@ function Admin_dashboard() {
               <button onClick={() => addTokens(user)}>Add 20K Tokens</button>/
               <button onClick={() => removeTokens(user)}>
                 Remove 20K Tokens
-              </button>{" "}
+              </button>
               /
               <button onClick={() => removeAllTokens(user)}>
                 Remove All Tokens

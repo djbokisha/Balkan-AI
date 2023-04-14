@@ -52,12 +52,8 @@ function Contact() {
       <div className="left-contact-side">
         <div className="text-area-contact">
           <h1>BALKAN AI</h1>
-
-          <p>PIB: 112371254 Delatnost: 4791 Matični broj: 66058336</p>
-
           <p>Tel: +381638765730 </p>
           <p>Email: support@balkanai.com</p>
-
           <p>Adresa: Zemunska 22 / 1. Sprat Interfon: 8 Novi Beograd 11070</p>
         </div>
       </div>

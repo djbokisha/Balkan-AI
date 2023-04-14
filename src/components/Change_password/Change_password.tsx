@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import Footer from "../Footer/Footer";
 
 type FormData = {
   oldPassword: string;
@@ -70,7 +71,7 @@ function Change_password() {
   };
 
   return (
-    <div className="changepassword-side">
+    <>    <div className="changepassword-side">
       <div className="changepassword">
         <div>
           <form onSubmit={handleSubmit(submitData)}>
@@ -117,6 +118,9 @@ function Change_password() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
+
   );
 }
 

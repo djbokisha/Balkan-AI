@@ -29,6 +29,21 @@ function Dashboard() {
   }
 
   const navigate = useNavigate();
+
+  function admiDashboard() {
+    if (
+      user?.email === "firga@gmail.com" &&
+      "dimitrije.stefanovic02@gmail.com" &&
+      "petar.mandic02@gmail.com" &&
+      "savkovicvasilije@gmail.com"
+    )
+      return (
+        <button type="button" onClick={() => navigate("/admindashboard")}>
+          Admin Panel
+        </button>
+      );
+  }
+
   return (
     <>
       <div className="container-dashboar">
@@ -47,9 +62,7 @@ function Dashboard() {
           <button type="button" onClick={() => navigate("/changepassword")}>
             Promeni Lozinku
           </button>
-          <button type="button" onClick={() => Logout()}>
-            IZLOGUJ SE
-          </button>
+          {admiDashboard()}
         </div>
         <div className="balkanai-info">
           <h2>Balkan AI</h2>
@@ -103,7 +116,8 @@ function Dashboard() {
             <img
               className="uplatnica"
               src={uplatnica1}
-              width="65%"
+              width="98%"
+              height="100%"
               alt="uplatnica"
             />
           </div>

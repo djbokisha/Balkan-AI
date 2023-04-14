@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import "./Chat_Bot.css";
+import pointer from "../../assets/paper-plane-svgrepo-com.svg";
+import logo from "../../assets/AiLogo.png";
 
 interface User {
   userId: string;
@@ -12,7 +14,7 @@ function Chat_Bot(props: any) {
   const location = useLocation();
   const data = location.state?.data;
   const navigate = useNavigate();
-  const input = useRef<HTMLTextAreaElement>(null);
+  const input = useRef<HTMLInputElement>(null);
   const { getItem } = useLocalStorage();
   const [user, setUser] = useState([]);
 
@@ -90,14 +92,58 @@ function Chat_Bot(props: any) {
         .catch((error) => console.log(error));
     }
   };
+  const [updated, setUpdated] = useState("");
+
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
+      setUpdated(input.current?.value!);
+      handleClick();
+    }
+  };
 
   return (
     <main className="main">
+      <div className="chat-description">
+          <div className="info-wrapper">
+            <h2>Zasto bas Balkan AI?</h2>
+            <div className="box-info">
+              <p>
+                Balkan AI je prvi domaci sistem vestacke inteligencijo koji je
+                treniran za interakciju na nasem jeziku.Izuzetno pogodan za sve
+                skolarce, studente i zaposlene. Resi svoje obaveze i do 10 puta
+                brze. Pocnite konacno da uzivate u slobodnom vremenu.
+              </p>
+            </div>
+          </div>
+          <div className="info-wrapper">
+            <h2>Balkan AI vs Chat GPT?</h2>
+            <div className="box-info">
+              <p>
+                Ovo je glavno pitanje koje bi svaki korisnik postavio. Balkan AI
+                je treniran sistem i prilagodjen nasem trzistu zbog
+                specificnosti jezika i podnevija. Nas AI chatbot kosta SVEGA
+                3.5€ mesecno, a dobijate sve benefite koje nudi Chat GPT Plus.
+                Negova cene je 20$ mesecno.
+              </p>
+            </div>
+          </div>
+          <div className="info-wrapper">
+            <h2>Benefiti Balkan AI?</h2>
+            <div className="box-info">
+              <p>
+                - Pristup sistomu 24/7 - Pristupacna cena - Sistem prevoda za
+                sve jezike sveta - Resavanje zadataka sistemom korak po korak -
+                Uvek zagarantovano mesto ne server - Pomoc prilikom ucenja -
+                Konkretni odgovori na sva vasa pitanja
+              </p>
+            </div>
+          </div>
+        </div>
       <div className="chat-bot-input">
-        <textarea
+        
+        {/* <textarea
           placeholder="Write your prompt.."
           className="textarea"
-          ref={input}
         ></textarea>
         <button
           onClick={handleClick}
@@ -105,9 +151,33 @@ function Chat_Bot(props: any) {
           className="btn-chatbot"
         >
           {loading ? "Generating..." : "Generate"}
-        </button>
-        <pre className="result">{result}</pre>
+        </button> */}
         <p>{totalTokens}</p>
+        <div className="chat-box">
+          <img src={logo} alt="" className="chat-logo" />
+
+          <div className="input-chatbot">
+            <input
+              className="chat"
+              type="text"
+              placeholder="Send a message..."
+              ref={input}
+              onKeyDown={handleKeyDown}
+            />
+            <div className="pointer">
+              <button className="chat-buttton">
+                <img
+                  src={pointer}
+                  alt=""
+                  width={16}
+                  height={16}
+                  onClick={handleClick}
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <pre className="result">{result}</pre>
       </div>
     </main>
   );
