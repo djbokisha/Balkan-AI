@@ -58,12 +58,13 @@
   color: black;
 }
 
-
 @media only screen and (max-width: 768px) {
- .content{
-  margin: auto;
-  padding-left: 0;
- }
-
+  .content {
+    margin: auto;
+    padding-left: 0;
+    width: 92%;
+  }
+  .input {
+    width: 100%;
+  }
 }
-
