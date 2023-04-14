@@ -30,6 +30,9 @@ a {
   text-decoration: none;
 }
 
+input {
+    -webkit-appearance: none;
+}
 @media only screen and (max-width: 768px) {
   html,
   body {
