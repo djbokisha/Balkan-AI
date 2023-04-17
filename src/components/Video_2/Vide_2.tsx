@@ -12,8 +12,8 @@ function Vide_2() {
         loop
         muted
         id="video"
-        controls={false}
         disablePictureInPicture
+        playsInline
       >
         <source src={video_2} type="video/mp4" />
       </video>

@@ -40,7 +40,6 @@ const Video = ({ resultRef }: any) => {
           muted
           playsInline
           id="video"
-          controls={false}
           onLoadedData={() => setLoaded(true)}
           style={{ display: loaded ? "inline" : "none" }}
         >
