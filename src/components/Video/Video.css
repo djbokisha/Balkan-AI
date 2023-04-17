@@ -77,8 +77,10 @@ video {
   padding-right: 0;
   object-fit: fill;
   overflow: hidden;
+}
 
-  
+::-webkit-media-controls {
+  display: none !important;
 }
 
 video::-webkit-media-controls-enclosure {
@@ -104,5 +106,30 @@ video::-webkit-media-controls-start-playback-button {
 @media only screen and (max-width: 768px) {
   .hero-text h1 {
     font-size: 40px;
+  }
+
+
+  ::-webkit-media-controls {
+    display: none !important;
+  }
+  
+  video::-webkit-media-controls-enclosure {
+    display: none !important;
+  }
+  
+  video::-webkit-media-controls {
+    display: none !important;
+  }
+  
+  video::-webkit-playsinline {
+    display: none !important;
+  }
+  
+  video::-webkit-media-controls-panel {
+    display: none !important;
+    opacity: 1 !important;
+  }
+  video::-webkit-media-controls-start-playback-button {
+    display: none;
   }
 }
