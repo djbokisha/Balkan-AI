@@ -3,7 +3,6 @@ import "./Video.css";
 import video from "../../assets/video.mp4";
 import circle2 from "../../assets/circle2.svg";
 import videoPreview from "../../assets/videoPreview.png";
-import ReactPlayer from "react-player";
 
 const Video = ({ resultRef }: any) => {
   const [loaded, setLoaded] = useState(false);
@@ -16,14 +15,6 @@ const Video = ({ resultRef }: any) => {
 
   return (
     <div className="hero">
-      {/* <ReactPlayer
-        loop={true}
-        controls={false}
-        url={[{ src: video, type: "video/mp4" }]}
-        playing={true}
-        muted={true}
-      /> */}
-
       {!loaded && (
         <img
           src={videoPreview}
