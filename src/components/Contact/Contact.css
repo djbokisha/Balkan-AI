@@ -135,7 +135,7 @@ textarea:focus {
 
 @media only screen and (max-width: 768px) {
   .left-contact-side {
-    width: 60vw;
+    width: 70vw;
   }
   .container-contact {
     display: flex;
