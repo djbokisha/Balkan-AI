@@ -100,7 +100,7 @@
   display: flex;
   align-items: center;
   padding: 25px;
-  width: 75%;
+  width: 100%;
   border: 1px solid transparent;
   border-radius: 1rem;
 }
@@ -109,7 +109,31 @@
   width: 22%;
   height: 100%;
 }
-@media only screen and (max-width: 768px) {
 
- 
+.info-wrapper h2 {
+ color: white;
+
+ font:  normal normal normal 24px montserrat, sans-serif;
+}
+.box-info p{
+  font:  normal normal normal 16px montserrat, sans-serif;
+
+
+}
+
+@media only screen and (max-width: 768px) {
+  .box-info p {
+    font-size: 0.6rem;
+  }
+
+  .info-wrapper h2 {
+    font-size: 1rem;
+    padding: 50px;
+  }
+  .chat-description {
+    flex-direction: column;
+  }
+  .main {
+    height: auto;
+  }
 }
