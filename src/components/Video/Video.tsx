@@ -27,6 +27,7 @@ const Video = ({ resultRef }: any) => {
       <Suspense fallback={<div>Loading...</div>}>
         <video
           autoPlay
+          disablePictureInPicture
           loop
           muted
           playsInline
