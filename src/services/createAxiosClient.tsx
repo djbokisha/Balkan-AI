@@ -1,10 +1,11 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { toast } from "react-toastify";
-
+// @ts-nocheck
 const client = axios.interceptors.request.use(
   (config) => {
-    const token = window.localStorage.getItem("jwt");
-    if (token) config.headers.Authorization = `Bearer ${token}`;
+    const token = window.localStorage.getItem("user");
+    //@ts-ignore
+    if (token) config.headers.Authorization = `Bearer ${token.accessToken!}`;
     return config;
   },
   (error) => {
@@ -12,7 +13,8 @@ const client = axios.interceptors.request.use(
   }
 );
 
-client.interceptors.response.use(undefined, (error) => {
+//@ts-ignore
+client.interceptors.response.use(undefined, (error: any) => {
   if (error.message === "Network Error" && !error.response) {
     toast.error("Network error - make sure API is running!");
   }
@@ -23,7 +25,7 @@ client.interceptors.response.use(undefined, (error) => {
   if (
     status === 401 &&
     headers["www-authenticate"] ===
-      'Bearer error="invalid_token", error_description="The token is expired"'
+    'Bearer error="invalid_token", error_description="The token is expired"'
   ) {
     window.localStorage.removeItem("jwt");
 
