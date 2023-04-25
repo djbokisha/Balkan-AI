@@ -42,6 +42,14 @@ input[type="search"] {
   -webkit-appearance: none;
 }
 
+textarea {
+  border-radius: 0;
+}
+
+textarea[type="search"] {
+  -webkit-appearance: none;
+}
+
 @media only screen and (max-width: 768px) {
   html,
   body {
