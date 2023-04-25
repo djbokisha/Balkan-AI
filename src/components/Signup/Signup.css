@@ -17,7 +17,7 @@
 }
 
 .signup p{
-  font-size: 1rem;
+  font-size: 1.1rem;
   text-align: center;
 }
 
@@ -61,7 +61,12 @@
   }
  
    .signup{
-    height: 90%;
+    height: 65%;
    }
+
+   .signup p{
+    font-size: 1.1rem;
+    text-align: center;
+  }
  
  }

@@ -5,6 +5,12 @@ import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
+// import {axiosPrivate} from "../../services/axiosPrivate"
+
+export const axiosPrivate = Axios.create({
+  baseURL: "http://localhost:5000",
+});
+
 
 function Google_Login_Oauth() {
   const { login } = useAuth();
@@ -23,7 +29,7 @@ function Google_Login_Oauth() {
             // @ts-ignore
             const { email, email_verified } = details;
             if (email_verified) {
-              Axios.post(` ${import.meta.env.VITE_URL}/auth/loginGoogle`, {
+              axiosPrivate.post("/auth/loginGoogle", {
                 email: email,
               })
                 .then((res) => {

@@ -9,33 +9,33 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { User } from "../../interfaces/user.interface";
 import Footer from "../Footer/Footer";
+import client from "../../services/createAxiosClient";
+import { axiosPrivate } from "../../services/axiosPrivate";
 
 function Dashboard() {
   const { logout } = useAuth();
   const { getUser } = useAuth();
   const [user, setUser] = useState<User | null>(null);
-  const Logout = () => {
-    logout();
-
-    navigate("/login");
-  };
   useEffect(() => {
     fetchUserData(getUser()?.userId!);
   }, []);
   async function fetchUserData(id: string) {
-    const { data } = await Axios.get(`${import.meta.env.VITE_URL}/users/${id}`);
+    const { data } = await axiosPrivate.get(`/users/${id}`);
     const { user } = data;
     setUser(user);
+
+    console.log(user);
   }
 
   const navigate = useNavigate();
 
   function admiDashboard() {
     if (
-      user?.email === "firga@gmail.com" &&
-      "dimitrije.stefanovic02@gmail.com" &&
-      "petar.mandic02@gmail.com" &&
-      "savkovicvasilije@gmail.com"
+      user?.email === "mrfirga@gmail.com" ||
+      "dimitrije.stefanovic02@gmail.com" ||
+      "petar.mandic02@gmail.com" ||
+      "savkovicvasilije@gmail.com" ||
+      "bojan.bokisha@gmail.com"
     )
       return (
         <button type="button" onClick={() => navigate("/admindashboard")}>

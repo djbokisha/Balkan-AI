@@ -7,6 +7,11 @@ import { ZodType, z } from "zod";
 import { useAuth } from "../../../hooks/useAuth";
 import Google_Login_Oauth from "../../Google/Google_Login_Oauth";
 import "./Login_left_side.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import client from "../../../services/createAxiosClient";
+// import { axiosPrivate } from "../../../services/axiosPrivate";
 
 type FormData = {
   email: string;
@@ -18,19 +23,15 @@ interface ChildAProps {
   onUserIdFetched: (userId: string) => void;
 }
 
-export const getCopy = (userType: string): string => {
-  if (userType.toLowerCase() === "admin") {
-    return "Hello Admin User! !!!";
-  }
-  return "Welcome user!";
-};
+export const axiosPrivate = Axios.create({
+  baseURL: "http://localhost:5000",
+});
+
 function Login_left_side() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [userId, setUserId] = useState("");
-
-  console.log("userId", userId);
-
+  const { getItem } = useLocalStorage();
   const schema: ZodType<FormData> = z.object({
     email: z.string().email(),
     password: z.string().min(5).max(20),
@@ -46,12 +47,9 @@ function Login_left_side() {
 
   const submitData = async (data: FormData) => {
     try {
-      const loginResponse = await Axios.post(
-        ` ${import.meta.env.VITE_URL}/auth/login`,
-        data
-      );
+      const loginResponse = await axiosPrivate.post(`/auth/login`, data);
 
-      console.log(loginResponse);
+      console.log("loginResponse", loginResponse);
 
       login({
         accessToken: loginResponse.data.accessToken,
@@ -63,14 +61,25 @@ function Login_left_side() {
       });
 
       setUserId(loginResponse.data.user.id);
+      console.log("userId", userId);
 
       if (loginResponse.status >= 200 && loginResponse.status <= 300) {
         navigate("/profile");
       }
-
-      // jwtInterceptor()
     } catch (error: any) {
       console.log(error);
+      if (error) {
+        toast("username or password incorrect ", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     }
   };
 
@@ -135,6 +144,7 @@ function Login_left_side() {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { ZodType, z } from "zod";
 import { useAuth } from "../../hooks/useAuth";
 import "./Signup.css";
+import Footer from "../Footer/Footer";
+// import { axiosPrivate } from "../../services/axiosPrivate";
 
 type FormData = {
   username: string;
@@ -12,6 +14,10 @@ type FormData = {
   password: string;
   repeatPassword: string;
 };
+
+export const axiosPrivate = Axios.create({
+  baseURL: "http://localhost:5000",
+});
 
 function Signup() {
   const { login } = useAuth();
@@ -37,10 +43,11 @@ function Signup() {
   });
 
   const submitData = (data: FormData) => {
-    Axios.post(`${import.meta.env.VITE_URL}/auth/signup`, {
-      ...data,
-      isEmailConfirmed: false,
-    })
+    axiosPrivate
+      .post(`/auth/signup`, {
+        ...data,
+        isEmailConfirmed: false,
+      })
       .then((res) => {
         login({
           accessToken: res.data.accessToken,
@@ -60,77 +67,87 @@ function Signup() {
   };
 
   return (
-    <div className="container-signup">
-      <div className="left-login-side">
-        <div className="signup">
-          <p>Registruj se isprobaj besplatno naš AI Chatbot</p>
-          <div>
-            <form onSubmit={handleSubmit(submitData)}>
-              <div className="name-singup">
-                <label htmlFor="">Username</label>
-                <input
-                  type="text"
-                  id="username"
-                  placeholder="Username"
-                  {...register("username")}
-                />
-                {errors.username && (
-                  <span className="error-span"> {errors.username.message}</span>
-                )}
-              </div>
+    <>
+      {" "}
+      <div className="container-signup">
+        <div className="left-login-side">
+          <div className="signup">
+            <p>Registruj se isprobaj besplatno naš AI Chatbot</p>
+            <div>
+              <form onSubmit={handleSubmit(submitData)}>
+                <div className="name-singup">
+                  <label htmlFor="">Username</label>
+                  <input
+                    type="text"
+                    id="username"
+                    placeholder="Username"
+                    {...register("username")}
+                  />
+                  {errors.username && (
+                    <span className="error-span">
+                      {" "}
+                      {errors.username.message}
+                    </span>
+                  )}
+                </div>
 
-              <div className="email-singup">
-                <label htmlFor="">Email address</label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Email address"
-                  {...register("email")}
-                />
-                {errors.email && (
-                  <span className="error-span"> {errors.email.message}</span>
-                )}
-              </div>
-              <div className="password-singup">
-                <label htmlFor="">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  autoComplete="on"
-                  {...register("password")}
-                />
-                {errors.password && (
-                  <span className="error-span"> {errors.password.message}</span>
-                )}
-              </div>
-              <div className="password-singup">
-                <label htmlFor="">Confirm Password</label>
-                <input
-                  type="password"
-                  id="repeatPassword"
-                  placeholder="Confirm Password"
-                  autoComplete="on"
-                  {...register("repeatPassword")}
-                />
-                {errors.repeatPassword && (
-                  <span className="error-span">
-                    {errors.repeatPassword.message}
-                  </span>
-                )}
-              </div>
-              <div className="remember-me">
-                <button type="submit" className="btn-login-singup">
-                  Sign up
-                </button>
-              </div>
-            </form>
+                <div className="email-singup">
+                  <label htmlFor="">Email address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Email address"
+                    {...register("email")}
+                  />
+                  {errors.email && (
+                    <span className="error-span"> {errors.email.message}</span>
+                  )}
+                </div>
+                <div className="password-singup">
+                  <label htmlFor="">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    autoComplete="on"
+                    {...register("password")}
+                  />
+                  {errors.password && (
+                    <span className="error-span">
+                      {" "}
+                      {errors.password.message}
+                    </span>
+                  )}
+                </div>
+                <div className="password-singup">
+                  <label htmlFor="">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="repeatPassword"
+                    placeholder="Confirm Password"
+                    autoComplete="on"
+                    {...register("repeatPassword")}
+                  />
+                  {errors.repeatPassword && (
+                    <span className="error-span">
+                      {errors.repeatPassword.message}
+                    </span>
+                  )}
+                </div>
+                <div className="remember-me">
+                  <button type="submit" className="btn-login-singup">
+                    Sign up
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="right-login-side"></div>
-    </div>
+        <div className="right-login-side"></div>
+      </div>
+      <Footer/>
+    </>
   );
 }
 

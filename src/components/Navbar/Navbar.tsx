@@ -6,6 +6,7 @@ import hamburger_close from "../../assets/hamburger-close.svg";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useAuth } from "../../hooks/useAuth";
+import { axiosPrivate } from "../../services/axiosPrivate";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -16,10 +17,16 @@ function Navbar() {
   const { getItem } = useLocalStorage();
   const { logout } = useAuth();
 
-  const Logout = () => {
-    logout();
-    navigate("/login");
-    hadleClick();
+  const Logout = async () => {
+    try {
+      const response = await axiosPrivate.get("/auth/signout");
+      console.log(response)
+      logout();
+      navigate("/login");
+      hadleClick();
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   useEffect(() => {

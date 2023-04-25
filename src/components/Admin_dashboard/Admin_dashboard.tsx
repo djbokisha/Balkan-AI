@@ -6,6 +6,7 @@ import { User } from "../../interfaces/user.interface";
 function Admin_dashboard() {
   const [appData, setAppData] = useState<User[] | []>([]);
   const [filterdata, setfilterData] = useState(appData);
+  const [valueTokens, setValueTokens] = useState<any>("");
 
   useEffect(() => {
     getUsers();
@@ -80,6 +81,22 @@ function Admin_dashboard() {
       })
       .catch((error) => console.log(error));
   }
+
+  function removeAmountTokens(user: User) {
+    Axios.patch(`${import.meta.env.VITE_URL}/tokens/`, null, {
+      params: { email: user.email },
+    })
+      .then((res) => {
+        console.log(res);
+
+        const updatedUsers = appData.map((u) =>
+          u.id === user.id ? { ...user, tokens: user.tokens! - valueTokens } : u
+        );
+        setAppData(updatedUsers);
+        setfilterData(updatedUsers);
+      })
+      .catch((error) => console.log(error));
+  }
   const tableData = () => {
     return filterdata.map((user, index) => {
       return (
@@ -98,6 +115,14 @@ function Admin_dashboard() {
               /
               <button onClick={() => removeAllTokens(user)}>
                 Remove All Tokens
+              </button>
+              /{" "}
+              <input
+                type="text"
+                onChange={(e) => setValueTokens(e.target.value)}
+              />{" "}
+              <button onClick={() => removeAmountTokens(user)}>
+                Remove Amount Tokens
               </button>
             </td>
           </tr>
