@@ -1,7 +1,7 @@
 import mem from "mem";
 import { axiosPublic } from "./axiosPublic";
 
-
+// debugger
 const refreshTokenFn = async () => {
     const userSession = JSON.parse(localStorage.getItem("user") as string);
     console.log(userSession)
@@ -31,6 +31,7 @@ const refreshTokenFn = async () => {
 
   const maxAge = 10000;
 
-export const memoizedRefreshToken = mem(refreshTokenFn, {
-  maxAge,
-});
+  export const memoizedRefreshToken = mem(refreshTokenFn, {
+    maxAge,
+  });
+  

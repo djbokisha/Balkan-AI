@@ -43,7 +43,7 @@ function Conversation() {
             onClick={() => buttonHandler()}
             className="btn-conversation"
           >
-            Posalji
+            Pošalji
           </button>
         </div>
       </div>

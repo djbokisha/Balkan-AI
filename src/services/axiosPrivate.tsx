@@ -5,7 +5,9 @@ axios.defaults.baseURL = "http://localhost:5000";
 
 axios.interceptors.request.use(
   async (config) => {
-    const userSession = JSON.parse(localStorage.getItem("user") as string);
+    const userSessionString = localStorage.getItem("user");
+    const userSession = userSessionString ? JSON.parse(userSessionString) : null;
+
 
     console.log("user session je ", userSession);
 

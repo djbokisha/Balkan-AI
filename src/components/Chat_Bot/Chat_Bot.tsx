@@ -9,8 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../../hooks/useAuth";
 
-
-
 interface User {
   userId: string;
 }
@@ -26,7 +24,6 @@ function Chat_Bot(props: any) {
 
   const [appData, setAppData] = useState<User[] | []>([]);
   const [filterdata, setfilterData] = useState(appData);
-
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user")!);
@@ -57,21 +54,13 @@ function Chat_Bot(props: any) {
         }
       }
     }
-
-
-
   }, []);
-
-
-
- 
 
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [totalTokens, setTotalTokens] = useState<any>("");
 
   const handleClick = async () => {
-
     const question = input.current?.value;
     // @ts-ignore
     const id = user.userId;
@@ -115,21 +104,21 @@ function Chat_Bot(props: any) {
           }
         });
     }
-    {
-      Axios.patch(`${import.meta.env.VITE_URL}/tokens/removeTokens`, null, {
-        params: { email },
-      })
-        .then((res) => {
-          console.log(res);
+    // {
+    //   Axios.patch(`${import.meta.env.VITE_URL}/tokens/removeTokens`, null, {
+    //     params: { email },
+    //   })
+    //     .then((res) => {
+    //       console.log(res);
 
-          // if (id === id) {
-          //   return userToken - totalTokens;
-          // }
-        })
-        .catch((error) => console.log(error));
-    }
-
+    //       // if (id === id) {
+    //       //   return userToken - totalTokens;
+    //       // }
+    //     })
+    //     .catch((error) => console.log(error));
+    // }
   };
+
   const [updated, setUpdated] = useState("");
 
   const handleKeyDown = (event: any) => {

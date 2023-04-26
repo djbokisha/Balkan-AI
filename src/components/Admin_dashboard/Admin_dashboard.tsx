@@ -8,6 +8,9 @@ function Admin_dashboard() {
   const [filterdata, setfilterData] = useState(appData);
   const [valueTokens, setValueTokens] = useState<any>("");
 
+  const valueTokenNumber = Number(valueTokens)
+  console.log(typeof valueTokenNumber)
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -49,22 +52,7 @@ function Admin_dashboard() {
       .catch((error) => console.log(error));
   }
 
-  function removeTokens(user: User) {
-    Axios.patch(`${import.meta.env.VITE_URL}/tokens/removeTokens`, null, {
-      params: { email: user.email },
-    })
-      .then((res) => {
-        console.log(res);
 
-        const updatedUsers = appData.map((u) =>
-          u.id === user.id ? { ...user, tokens: user.tokens! - 20000 } : u
-        );
-        setAppData(updatedUsers);
-        setfilterData(updatedUsers);
-        console.log(updatedUsers);
-      })
-      .catch((error) => console.log(error));
-  }
 
   function addTokens(user: User) {
     Axios.patch(`${import.meta.env.VITE_URL}/tokens/addTokens`, null, {
@@ -81,10 +69,30 @@ function Admin_dashboard() {
       })
       .catch((error) => console.log(error));
   }
+  function removeTokens(user: User) {
+    Axios.patch(`${import.meta.env.VITE_URL}/tokens/substractTokens`,   {
+      email: user.email,
+      tokenAmout: 20000,
+      id: user.id,
+    })
+      .then((res) => {
+        console.log(res);
+
+        const updatedUsers = appData.map((u) =>
+          u.id === user.id ? { ...user, tokens: user.tokens! - 20000 } : u
+        );
+        setAppData(updatedUsers);
+        setfilterData(updatedUsers);
+        console.log(updatedUsers);
+      })
+      .catch((error) => console.log(error));
+  }
 
   function removeAmountTokens(user: User) {
-    Axios.patch(`${import.meta.env.VITE_URL}/tokens/`, null, {
-      params: { email: user.email },
+    Axios.patch(`${import.meta.env.VITE_URL}/tokens/substractTokens`, {
+      email: user.email,
+      tokenAmout: valueTokenNumber,
+      id: user.id,
     })
       .then((res) => {
         console.log(res);

@@ -5,11 +5,13 @@ import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
-// import {axiosPrivate} from "../../services/axiosPrivate"
+import {axiosPrivate} from "../../services/axiosPrivate"
 
-export const axiosPrivate = Axios.create({
-  baseURL: "http://localhost:5000",
-});
+// export const axiosPrivate = Axios.create({
+//   baseURL: "http://localhost:5000",
+// });
+
+
 
 
 function Google_Login_Oauth() {

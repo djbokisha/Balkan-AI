@@ -23,8 +23,6 @@ function Dashboard() {
     const { data } = await axiosPrivate.get(`/users/${id}`);
     const { user } = data;
     setUser(user);
-
-    console.log(user);
   }
 
   const navigate = useNavigate();
