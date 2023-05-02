@@ -17,7 +17,9 @@ type FormData = {
 };
 
 export const axiosPrivate = Axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: `${import.meta.env.VITE_URL}`,
+  withCredentials: true,
+
 });
 
 function Signup() {
