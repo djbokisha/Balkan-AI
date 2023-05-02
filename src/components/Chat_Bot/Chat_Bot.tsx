@@ -25,8 +25,17 @@ function Chat_Bot(props: any) {
   const [appData, setAppData] = useState<User[] | []>([]);
   const [filterdata, setfilterData] = useState(appData);
 
+  // async function fetchUserData(id: string) {
+  //   const { data } = await axiosPrivate.get(`/users/${id}`);
+  //   const { user } = data;
+  //   setUser(user);
+  //   console.log(user)
+  //   console.log(id);
+  // }
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user")!);
+    console.log("USER", user);
     if (!user) {
       navigate("/login");
     } else {
@@ -34,6 +43,7 @@ function Chat_Bot(props: any) {
       if (data) {
         // @ts-ignore
         const id = user.userId;
+        console.log(user);
         console.log(id);
         setLoading(true);
         {
@@ -55,7 +65,12 @@ function Chat_Bot(props: any) {
       }
     }
   }, []);
-
+  //@ts-ignore
+  const userId = user.userId;
+  console.log(userId);
+  //@ts-ignore
+  const email = user.email;
+  console.log(email);
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [totalTokens, setTotalTokens] = useState<any>("");
@@ -104,19 +119,18 @@ function Chat_Bot(props: any) {
           }
         });
     }
-    // {
-    //   Axios.patch(`${import.meta.env.VITE_URL}/tokens/removeTokens`, null, {
-    //     params: { email },
-    //   })
-    //     .then((res) => {
-    //       console.log(res);
-
-    //       // if (id === id) {
-    //       //   return userToken - totalTokens;
-    //       // }
-    //     })
-    //     .catch((error) => console.log(error));
-    // }
+    function removeAmountTokens() {
+      Axios.patch(`${import.meta.env.VITE_URL}/tokens/substractTokens`, {
+        email: email,
+        tokenAmout: totalTokens,
+        id: userId,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => console.log(error));
+    }
+    removeAmountTokens();
   };
 
   const [updated, setUpdated] = useState("");
@@ -130,10 +144,10 @@ function Chat_Bot(props: any) {
 
   return (
     <main className="main">
-      <div className="chat-description">
-        <div className="info-wrapper">
-          <h2>Zasto bas Balkan AI?</h2>
-          <div className="box-info">
+      <div className="row">
+        <div className="column">
+          <div className="card">
+            <h3>Zasto bas Balkan AI?</h3>
             <p>
               Balkan AI je prvi domaci sistem vestacke inteligencijo koji je
               treniran za interakciju na nasem jeziku.Izuzetno pogodan za sve
@@ -142,9 +156,10 @@ function Chat_Bot(props: any) {
             </p>
           </div>
         </div>
-        <div className="info-wrapper">
-          <h2>Balkan AI vs Chat GPT?</h2>
-          <div className="box-info">
+
+        <div className="column">
+          <div className="card">
+            <h3>Balkan AI vs Chat GPT?</h3>
             <p>
               Ovo je glavno pitanje koje bi svaki korisnik postavio. Balkan AI
               je treniran sistem i prilagodjen nasem trzistu zbog specificnosti
@@ -154,18 +169,21 @@ function Chat_Bot(props: any) {
             </p>
           </div>
         </div>
-        <div className="info-wrapper">
-          <h2>Benefiti Balkan AI?</h2>
-          <div className="box-info">
-            <p>
-              - Pristup sistomu 24/7 - Pristupacna cena - Sistem prevoda za sve
-              jezike sveta - Resavanje zadataka sistemom korak po korak - Uvek
-              zagarantovano mesto ne server - Pomoc prilikom ucenja - Konkretni
-              odgovori na sva vasa pitanja
-            </p>
+
+        <div className="column">
+          <div className="card">
+            <h3>Benefiti Balkan AI?</h3>
+            <p> - Pristup sistomu 24/7</p>
+            <p> - Pristupacna cena - </p>
+            <p> Sistem prevoda za sve jezike sveta </p>
+            <p> - Resavanje zadataka sistemom korak po korak </p>
+            <p> - Uvek zagarantovano mesto ne server </p>
+            <p> - Pomoc prilikom ucenja </p>
+            <p> - Konkretni odgovori na sva vasa pitanja</p>
           </div>
         </div>
       </div>
+
       <div className="chat-bot-input">
         {/* <textarea
           placeholder="Write your prompt.."
@@ -179,6 +197,8 @@ function Chat_Bot(props: any) {
           {loading ? "Generating..." : "Generate"}
         </button> */}
         <p>{totalTokens}</p>
+        <pre className="result">{result}</pre>
+
         <div className="chat-box">
           <img src={logo} alt="" className="chat-logo" />
 
@@ -203,7 +223,6 @@ function Chat_Bot(props: any) {
             </div>
           </div>
         </div>
-        <pre className="result">{result}</pre>
         <ToastContainer />
       </div>
     </main>

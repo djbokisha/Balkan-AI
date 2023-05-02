@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect , useState} from "react";
 import { User, useUser } from "./useUser";
 import { useLocalStorage } from "./useLocalStorage";
 
@@ -20,6 +20,13 @@ export const useAuth = () => {
   const logout = () => {
     removeUser();
   };
+  const userState =() => {
+    const [loggedin , setLoggedin] = useState<any>(false)
 
-  return { user, login, logout, getUser };
+
+    console.log(loggedin)
+
+  }
+
+  return { user, login, logout, getUser , userState};
 };

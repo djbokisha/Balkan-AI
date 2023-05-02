@@ -19,10 +19,13 @@ function Dashboard() {
   useEffect(() => {
     fetchUserData(getUser()?.userId!);
   }, []);
+
   async function fetchUserData(id: string) {
     const { data } = await axiosPrivate.get(`/users/${id}`);
     const { user } = data;
     setUser(user);
+    // console.log(user)
+    // console.log(id);
   }
 
   const navigate = useNavigate();
@@ -30,16 +33,17 @@ function Dashboard() {
   function admiDashboard() {
     if (
       user?.email === "mrfirga@gmail.com" ||
-      "dimitrije.stefanovic02@gmail.com" ||
-      "petar.mandic02@gmail.com" ||
-      "savkovicvasilije@gmail.com" ||
-      "bojan.bokisha@gmail.com"
-    )
+      user?.email === "dimitrije.stefanovic02@gmail.com" ||
+      user?.email === "petar.mandic02@gmail.com" ||
+      user?.email === "savkovicvasilije@gmail.com" ||
+      user?.email === "bojan.bokisha@gmail.com"
+    ) {
       return (
         <button type="button" onClick={() => navigate("/admindashboard")}>
           Admin Panel
         </button>
       );
+    } 
   }
 
   return (

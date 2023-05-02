@@ -3,6 +3,8 @@
   margin: 0;
   color: #cad2c5;
   font-size: 30px;
+  font-family: helvetica-w01-roman,helvetica-w02-roman,helvetica-lt-w10-roman,sans-serif;
+  font-weight: 100;
 }
 
 .conversation {
@@ -25,7 +27,7 @@
   font: italic normal normal 16px/1.4em helvetica-w01-roman, helvetica-w02-roman,
     helvetica-lt-w10-roman, sans-serif;
   background-color: #cbd2c4;
-  height: 50px;
+  height: 51px;
   width: 360%;
   border-radius: 10px;
   border: 1px solid black;

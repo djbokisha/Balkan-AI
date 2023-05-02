@@ -1,22 +1,18 @@
 import axios from "axios";
+
 import { memoizedRefreshToken } from "./refreshToken";
 
 axios.defaults.baseURL = "http://localhost:5000";
 
 axios.interceptors.request.use(
   async (config) => {
-    const userSessionString = localStorage.getItem("user");
-    const userSession = userSessionString ? JSON.parse(userSessionString) : null;
+    const session = JSON.parse(localStorage.getItem("user") as string);
 
-
-    console.log("user session je ", userSession);
-
-    if (userSession?.accessToken) {
+    if (session?.accessToken) {
       // @ts-ignore
       config.headers = {
         ...config.headers,
-        authorization: `Bearer ${userSession?.accessToken}`,
-        tokenId: userSession?.tokenId,
+        authorization: `Bearer ${session?.accessToken}`,
       };
     }
 
@@ -33,21 +29,18 @@ axios.interceptors.response.use(
     if (error?.response?.status === 401 && !config?.sent) {
       config.sent = true;
 
-      try {
-        const result = await memoizedRefreshToken();
-        console.log("memoizedRefreshToken result:", result);
+      const result = await memoizedRefreshToken();
 
-        if (result?.accessToken) {
-          config.headers = {
-            ...config.headers,
-            authorization: `Bearer ${result?.accessToken}`,
-          };
-        }
+      // console.log(result)
 
-        return axios(config);
-      } catch (err) {
-        console.error("memoizedRefreshToken error:", err);
+      if (result?.accessToken) {
+        config.headers = {
+          ...config.headers,
+          authorization: `Bearer ${result?.accessToken}`,
+        };
       }
+
+      return axios(config);
     }
     return Promise.reject(error);
   }

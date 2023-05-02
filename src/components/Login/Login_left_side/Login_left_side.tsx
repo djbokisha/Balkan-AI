@@ -3,7 +3,7 @@ import Axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { ZodType, z } from "zod";
+import { ZodType, any, z } from "zod";
 import { useAuth } from "../../../hooks/useAuth";
 import Google_Login_Oauth from "../../Google/Google_Login_Oauth";
 import "./Login_left_side.css";
@@ -12,6 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import client from "../../../services/createAxiosClient";
 // import { axiosPrivate } from "../../../services/axiosPrivate";
+import {useUser}  from "../../../hooks/useUser"
+import {AuthContext} from "../../../context/AuthContext"
 
 type FormData = {
   email: string;
@@ -32,6 +34,8 @@ function Login_left_side() {
   const { login } = useAuth();
   const [userId, setUserId] = useState("");
   const { getItem } = useLocalStorage();
+  // const userState =  useUser()
+  const userState = useAuth();
   const schema: ZodType<FormData> = z.object({
     email: z.string().email(),
     password: z.string().min(5).max(20),
@@ -64,6 +68,9 @@ function Login_left_side() {
       console.log("userId", userId);
 
       if (loginResponse.status >= 200 && loginResponse.status <= 300) {
+        // userState.setLoggedin(true)
+        // userState.setLoggedin(true)
+        // console.log(userState.loggedin)
         navigate("/profile");
       }
     } catch (error: any) {

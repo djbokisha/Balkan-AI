@@ -4,6 +4,7 @@ import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Axios from "axios";
+import { axiosPrivate } from "../../services/axiosPrivate";
 
 type FormData = {
   name: string;
@@ -36,7 +37,7 @@ function Contact() {
       message: data.message,
     };
 
-    Axios.post(`${import.meta.env.VITE_URL}/auth/email`, payload)
+    axiosPrivate.post(`${import.meta.env.VITE_URL}/auth/email`, payload)
       .then((res) => {
         console.log(res);
         if (res.status >= 200 && res.status <= 300) {

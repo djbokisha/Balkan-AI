@@ -5,14 +5,12 @@ import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
-import {axiosPrivate} from "../../services/axiosPrivate"
+// import {axiosPrivate} from "../../services/axiosPrivate"
+import { useUser } from "../../hooks/useUser";
 
-// export const axiosPrivate = Axios.create({
-//   baseURL: "http://localhost:5000",
-// });
-
-
-
+export const axiosPrivate = Axios.create({
+  baseURL: "http://localhost:5000",
+});
 
 function Google_Login_Oauth() {
   const { login } = useAuth();
@@ -21,6 +19,9 @@ function Google_Login_Oauth() {
   const [userId, setUserId] = useState<string | null>(null);
 
   const clientId = import.meta.env.VITE_CLIENT_ID_GOOGLE;
+
+  const userState =  useUser()
+
 
   return (
     <div>
@@ -31,9 +32,10 @@ function Google_Login_Oauth() {
             // @ts-ignore
             const { email, email_verified } = details;
             if (email_verified) {
-              axiosPrivate.post("/auth/loginGoogle", {
-                email: email,
-              })
+              axiosPrivate
+                .post("/auth/loginGoogle", {
+                  email: email,
+                })
                 .then((res) => {
                   login({
                     accessToken: res.data.accessToken,
@@ -51,14 +53,8 @@ function Google_Login_Oauth() {
                   setUserId(userId);
                   console.log(userId);
 
-                  const getCopy = (userType: string): string => {
-                    if (userType.toLowerCase() === "admin") {
-                      return userId;
-                    }
-                    return "Welcome user!";
-                  };
-
                   if (res.status >= 200 && res.status <= 300) {
+                    userState.setLoggedin(true)
                     navigate("/profile");
                   }
                 })

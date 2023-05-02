@@ -9,9 +9,16 @@ interface AuthContext {
 export const AuthContext = createContext<AuthContext>({
   user: null,
   setUser: () => {},
+  // isLoggedIn: false,
+  // setIsLoggedin: (state: boolean) => {
+  //   // isLoggendIn
+  // }
 });
 
 export const InputContex = createContext({
   input: null,
   setInput: () => {},
 });
+
+
+

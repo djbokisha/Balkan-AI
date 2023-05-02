@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks/useAuth";
 import "./Signup.css";
 import Footer from "../Footer/Footer";
 // import { axiosPrivate } from "../../services/axiosPrivate";
+import {useUser} from "../../hooks/useUser"
 
 type FormData = {
   username: string;
@@ -22,6 +23,7 @@ export const axiosPrivate = Axios.create({
 function Signup() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const userState =  useUser()
   const schema: ZodType<FormData> = z
     .object({
       username: z.string().min(2).max(30),
@@ -58,11 +60,21 @@ function Signup() {
           userId: res.data.user.id,
         });
         if (res.status >= 200 && res.status <= 300) {
+          userState.setLoggedin(true)
           navigate("/profile");
         }
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(async () => {
+       await axiosPrivate.post(`/auth/email`, {
+          recipient: "djbokisha@gmail.com",
+          sender: "",
+          subject: "pera",
+          message: "zdera",
+          type: "verify",
+        });
       });
   };
 
@@ -146,7 +158,7 @@ function Signup() {
 
         <div className="right-login-side"></div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

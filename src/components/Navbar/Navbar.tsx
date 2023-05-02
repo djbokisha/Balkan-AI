@@ -17,22 +17,34 @@ function Navbar() {
   const { getItem } = useLocalStorage();
   const { logout } = useAuth();
 
+  function getUserId() {}
+
+  useEffect(() => {
+    const userString = getItem("user");
+    const user = userString ? JSON.parse(userString) : null;
+    const tokenId = user ? user.tokenId : null;
+    console.log(tokenId);
+    setIsLoggedIn(user ? true : false);
+    setTokenId(tokenId);
+  }, [getItem]);
+
+  const [tokenId, setTokenId] = useState(null);
+
   const Logout = async () => {
     try {
-      const response = await axiosPrivate.get("/auth/signout");
-      console.log(response)
+      const response = await axiosPrivate.get("/auth/signout", {
+        headers: {
+          tokenId: tokenId,
+        },
+      });
+      console.log(response);
       logout();
       navigate("/login");
       hadleClick();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
-
-  useEffect(() => {
-    const user = getItem("user");
-    setIsLoggedIn(user ? true : false);
-  }, [getItem]);
 
   function isAuthenticated() {
     return (
