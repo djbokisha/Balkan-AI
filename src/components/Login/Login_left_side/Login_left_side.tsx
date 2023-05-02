@@ -12,8 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import client from "../../../services/createAxiosClient";
 // import { axiosPrivate } from "../../../services/axiosPrivate";
-import {useUser}  from "../../../hooks/useUser"
-import {AuthContext} from "../../../context/AuthContext"
+import { useUser } from "../../../hooks/useUser";
+import { AuthContext } from "../../../context/AuthContext";
 
 type FormData = {
   email: string;
@@ -27,6 +27,7 @@ interface ChildAProps {
 
 export const axiosPrivate = Axios.create({
   baseURL: `${import.meta.env.VITE_URL}`,
+  withCredentials: true,
 });
 
 function Login_left_side() {
