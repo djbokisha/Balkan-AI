@@ -26,7 +26,7 @@ interface ChildAProps {
 }
 
 export const axiosPrivate = Axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: `${import.meta.env.VITE_URL}`,
 });
 
 function Login_left_side() {

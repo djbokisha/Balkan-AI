@@ -9,7 +9,9 @@ import { useState } from "react";
 import { useUser } from "../../hooks/useUser";
 
 export const axiosPrivate = Axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: `${import.meta.env.VITE_URL}`,
+  withCredentials: true,
+
 });
 
 function Google_Login_Oauth() {

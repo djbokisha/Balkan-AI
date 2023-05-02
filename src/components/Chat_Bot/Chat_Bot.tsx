@@ -79,6 +79,7 @@ function Chat_Bot(props: any) {
     const question = input.current?.value;
     // @ts-ignore
     const id = user.userId;
+    console.log(id)
     // @ts-ignore
     const email = user.email;
     console.log(email);
@@ -100,6 +101,9 @@ function Chat_Bot(props: any) {
           console.log(res.data.usage.total_tokens);
           const total_tokens = res.data.usage.total_tokens;
           setTotalTokens(total_tokens);
+
+
+          
         })
         .catch((err) => {
           setLoading(false);
@@ -119,8 +123,8 @@ function Chat_Bot(props: any) {
           }
         });
     }
-    function removeAmountTokens() {
-      Axios.patch(`${import.meta.env.VITE_URL}/tokens/substractTokens`, {
+    async function  removeAmountTokens()  {
+    await  Axios.patch(`${import.meta.env.VITE_URL}/tokens/substractTokens`, {
         email: email,
         tokenAmout: totalTokens,
         id: userId,
@@ -196,7 +200,7 @@ function Chat_Bot(props: any) {
         >
           {loading ? "Generating..." : "Generate"}
         </button> */}
-        <p>{totalTokens}</p>
+        {/* <p>{totalTokens}</p> */}
         <pre className="result">{result}</pre>
 
         <div className="chat-box">

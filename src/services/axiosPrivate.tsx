@@ -2,7 +2,10 @@ import axios from "axios";
 
 import { memoizedRefreshToken } from "./refreshToken";
 
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = `${import.meta.env.VITE_URL}`;
+
+
+
 
 axios.interceptors.request.use(
   async (config) => {
