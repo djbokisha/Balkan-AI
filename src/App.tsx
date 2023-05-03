@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider, createHashRouter } from "react-router-dom";
 import Chat_Bot from "./components/Chat_Bot/Chat_Bot";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
@@ -18,7 +18,7 @@ import { useState } from "react";
 function App(): JSX.Element {
   const { user, login, logout } = useAuth();
 
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       element: <Root />,
