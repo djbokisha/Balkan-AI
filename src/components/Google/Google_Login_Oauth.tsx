@@ -10,7 +10,7 @@ import { useUser } from "../../hooks/useUser";
 
 export const axiosPrivate = Axios.create({
   baseURL: `${import.meta.env.VITE_URL}`,
-  withCredentials: true,
+  // withCredentials: true,
 
 });
 

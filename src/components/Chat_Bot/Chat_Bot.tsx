@@ -22,16 +22,7 @@ function Chat_Bot(props: any) {
   const [user, setUser] = useState([]);
   const { getUser } = useAuth();
 
-  const [appData, setAppData] = useState<User[] | []>([]);
-  const [filterdata, setfilterData] = useState(appData);
 
-  // async function fetchUserData(id: string) {
-  //   const { data } = await axiosPrivate.get(`/users/${id}`);
-  //   const { user } = data;
-  //   setUser(user);
-  //   console.log(user)
-  //   console.log(id);
-  // }
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user")!);
@@ -41,6 +32,7 @@ function Chat_Bot(props: any) {
     } else {
       setUser(user);
       if (data) {
+        console.log("data",data)
         // @ts-ignore
         const id = user.userId;
         console.log(user);
@@ -101,7 +93,23 @@ function Chat_Bot(props: any) {
           console.log(res.data.usage.total_tokens);
           const total_tokens = res.data.usage.total_tokens;
           setTotalTokens(total_tokens);
+          console.log(res.status)
+          if (res.status === 200){
 
+            async function  removeAmountTokens()  {
+              await  Axios.patch(`${import.meta.env.VITE_URL}/tokens/substractTokens`, {
+                  email: email,
+                  tokenAmout: totalTokens,
+                  id: userId,
+                })
+                  .then((res) => {
+                    console.log(res);
+                  })
+                  .catch((error) => console.log(error));
+              }
+              removeAmountTokens();
+
+          }
 
           
         })
@@ -123,18 +131,7 @@ function Chat_Bot(props: any) {
           }
         });
     }
-    async function  removeAmountTokens()  {
-    await  Axios.patch(`${import.meta.env.VITE_URL}/tokens/substractTokens`, {
-        email: email,
-        tokenAmout: totalTokens,
-        id: userId,
-      })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((error) => console.log(error));
-    }
-    removeAmountTokens();
+  
   };
 
   const [updated, setUpdated] = useState("");

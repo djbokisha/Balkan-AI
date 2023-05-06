@@ -4,7 +4,14 @@ import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Axios from "axios";
-import { axiosPrivate } from "../../services/axiosPrivate";
+// import { axiosPrivate } from "../../services/axiosPrivate";
+
+
+// export const axiosPrivate = Axios.create({
+//   baseURL: `${import.meta.env.VITE_URL}`,
+//   withCredentials: true,
+
+// });
 
 type FormData = {
   name: string;
@@ -25,6 +32,7 @@ function Contact() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>();
 
   const submitData = (data: FormData) => {
@@ -37,10 +45,14 @@ function Contact() {
       message: data.message,
     };
 
-    axiosPrivate.post(`${import.meta.env.VITE_URL}/auth/email`, payload)
+    Axios
+      .post(`${import.meta.env.VITE_URL}/auth/email`, payload)
       .then((res) => {
         console.log(res);
+
         if (res.status >= 200 && res.status <= 300) {
+          // reset();
+
         }
       })
       .catch((err) => {

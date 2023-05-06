@@ -6,7 +6,14 @@ import hamburger_close from "../../assets/hamburger-close.svg";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useAuth } from "../../hooks/useAuth";
+import Axios from "axios";
 import { axiosPrivate } from "../../services/axiosPrivate";
+
+// export const axiosPrivate = Axios.create({
+//   baseURL: `${import.meta.env.VITE_URL}`,
+//   withCredentials: true,
+
+// });
 
 function Navbar() {
   const [click, setClick] = useState(false);
