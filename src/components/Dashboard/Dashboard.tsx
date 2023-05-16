@@ -36,14 +36,15 @@ function Dashboard() {
       user?.email === "dimitrije.stefanovic02@gmail.com" ||
       user?.email === "petar.mandic02@gmail.com" ||
       user?.email === "savkovicvasilije@gmail.com" ||
-      user?.email === "bojan.bokisha@gmail.com"
+      user?.email === "bojan.bokisha@gmail.com" ||
+      user?.email === "mstojkovic955@gmail.com"
     ) {
       return (
         <button type="button" onClick={() => navigate("/admindashboard")}>
           Admin Panel
         </button>
       );
-    } 
+    }
   }
 
   return (

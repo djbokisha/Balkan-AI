@@ -7,10 +7,12 @@ import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 // import {axiosPrivate} from "../../services/axiosPrivate"
 import { useUser } from "../../hooks/useUser";
+import { ToastContainer, toast } from "react-toastify";
+
 
 export const axiosPrivate = Axios.create({
   baseURL: `${import.meta.env.VITE_URL}`,
-  // withCredentials: true,
+  withCredentials: true,
 
 });
 
@@ -61,6 +63,19 @@ function Google_Login_Oauth() {
                   }
                 })
                 .catch((err: any) => {
+
+                  if (err) {
+                    toast("please sign up first", {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    });
+                  }
                   console.log(err);
                   // throw new Error(err.message);
                   console.error();
@@ -73,6 +88,8 @@ function Google_Login_Oauth() {
           type="icon"
           shape="circle"
         />
+              <ToastContainer />
+
       </GoogleOAuthProvider>
     </div>
   );

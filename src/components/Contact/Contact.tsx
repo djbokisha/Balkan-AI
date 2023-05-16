@@ -110,7 +110,7 @@ function Contact() {
               ></textarea>
 
               <button type="submit" className="btn-send">
-                Posalji
+                Pošalji
               </button>
             </div>
           </form>

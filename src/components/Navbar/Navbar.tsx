@@ -101,7 +101,7 @@ function Navbar() {
                 type="button"
                 onClick={() => login()}
               >
-                Log in
+                Login
               </button>
             </>
           )}

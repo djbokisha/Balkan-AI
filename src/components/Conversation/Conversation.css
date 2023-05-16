@@ -59,6 +59,7 @@
   margin-left: 2rem;
   color: black;
   background-color: #efefef;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 768px) {
