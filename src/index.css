@@ -30,9 +30,9 @@ a {
   text-decoration: none;
 }
 
-input:-webkit-autofill {
+/* input:-webkit-autofill {
   -webkit-background-clip: text;
-}
+} */
 
 input {
   border-radius: 0;

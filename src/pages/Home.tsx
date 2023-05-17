@@ -5,7 +5,8 @@ import Info_1 from "../components/Info_1/Info_1";
 import Info_2 from "../components/Info_2/Info_2";
 import Video from "../components/Video/Video";
 import Vide_2 from "../components/Video_2/Vide_2";
-import Contact from "../components/Contact/Contact";
+// import Contact from "../components/Contact/Contact";
+import Contact from "../components/Contact2/Contact2";
 import { useRef } from "react";
 
 const Home = () => {
