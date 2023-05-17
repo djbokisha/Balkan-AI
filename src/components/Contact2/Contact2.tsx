@@ -67,7 +67,6 @@ function Contact() {
           <h2>Kontaktirajte nas</h2>
           <p>Tel: +381608765860</p>
           <p>Email: support@balkanai.com</p>
-          <p>Adresa: Zemunska 22 / 1. Sprat Interfon: 8 Novi Beograd 11070</p>
         </div>
       </div>
       <div className="right-contact-side">
