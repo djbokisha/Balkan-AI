@@ -9,10 +9,10 @@
 }
 .left-contact-side {
   height: 100%;
-  width: 50vw;
+  width: 30vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   color: #cad2c5;
   font-family: helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman,
@@ -20,7 +20,7 @@
 }
 .right-contact-side {
   height: 100%;
-  width: 50vw;
+  width: 40vw;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -156,12 +156,13 @@ form p {
   .left-contact-side {
     width: 70vw;
     height: 35%;
+    align-items: center;
   }
   .container-contact {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 150vh;
+    height: 120vh;
   }
 
   .name input,
@@ -189,7 +190,7 @@ form p {
   }
   .container-form {
     width: 100%;
-    margin-top: 3rem;
+    margin-top: -3rem;
   }
   .text-area-contact h2 {
     font-size: 1.7em;

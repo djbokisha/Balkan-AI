@@ -64,7 +64,7 @@ function Contact() {
     <div className="container-contact">
       <div className="left-contact-side">
         <div className="text-area-contact">
-          <h2>Kontaktirajte nas</h2>
+          <h2>Kontaktirajte nas:</h2>
           <p>Tel: +381608765860</p>
           <p>Email: support@balkanai.com</p>
         </div>

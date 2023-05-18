@@ -3,8 +3,8 @@ import "./Footer.css";
 import linkedin from "../../assets/icons/linkedin.png";
 import facebook from "../../assets/icons/facebook.png";
 import twitter from "../../assets/icons/twitter.png";
-import instagram from "../../assets/icons/instagram.png";
-import tiktok1 from "../../assets/icons/tiktok1.svg";
+import instagram2 from "../../assets/icons/instagram2.svg";
+import tiktok2 from "../../assets/icons/tik-tok2.svg";
 
 function Footer() {
   const current = new Date();
@@ -15,10 +15,10 @@ function Footer() {
       <h3>© {date} by BALKAN AI</h3>
       <div className="icons">
         <a href="https://www.instagram.com/balkan_ai" target="_blank">
-          <img src={instagram} alt="instagram" />
+          <img src={instagram2} alt="instagram" width={24} height={24} />
         </a>
         <a href="https://www.tiktok.com/@balkan_ai" target="_blank">
-          <img width={24} height={24} src={tiktok1} alt="instagram" />
+          <img width={24} height={24} src={tiktok2} alt="instagram" />
         </a>
       </div>
     </div>
